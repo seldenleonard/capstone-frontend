@@ -7,8 +7,9 @@ import Logout from "../views/Logout.vue";
 import UsersShow from "../views/UsersShow.vue";
 import UsersEdit from "../views/UsersEdit.vue";
 import ArtworksIndex from "../views/ArtworksIndex.vue";
+import ArtworksNew from "../views/ArtworksNew.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -53,6 +54,11 @@ const routes = [
     path: "/artworks",
     name: "artworks-index",
     component: ArtworksIndex
+  },
+  {
+    path: "/artworks/new",
+    name: "artworks-new",
+    component: ArtworksNew
   },
 ];
 

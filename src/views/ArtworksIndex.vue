@@ -32,6 +32,7 @@
       <!-- NEED HELP GETTING IMAGES TO SHOW UP -->
       <h2>{{ artwork.title }}</h2>
       <!-- Need to add in the User who created the artwork -->
+      <!-- Need to add in that User's college as well -->
       <p>{{ artwork.medium }}</p>
       <p>{{ artwork.description }}</p>
       <p>$ {{ artwork.price }}</p>
