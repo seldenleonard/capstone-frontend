@@ -20,7 +20,7 @@
       <h2>{{ artwork.title }}</h2>
       <p>{{ artwork.medium }}</p>
       <p>{{ artwork.description }}</p>
-      <p>{{ artwork.price }}</p>
+      <p>$ {{ artwork.price }}</p>
       <p>{{ artwork.dimensions }}</p>
       <p>{{ artwork.year }}</p>
       <h5 class="category">Posted {{ relativeDate(artwork.created_at) }}</h5>

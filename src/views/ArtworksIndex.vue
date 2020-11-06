@@ -1,13 +1,40 @@
 <template>
   <div class="artworks-index">
-    <div v-for="artwork in artworks">
+    <div>
+      <input type="text" v-model="allAttributeFilter" placeholder="Search" />
+      <datalist id="titles">
+        <option v-for="artwork in artworks">{{ artwork.title }}</option>
+      </datalist>
+      <button v-on:click="setSortAttribute('title')">
+        Sort by Title
+      </button>
+      <button v-on:click="setSortAttribute('year')">
+        Sort by Year
+      </button>
+    </div>
+
+    <div
+      v-for="artwork in orderBy(
+        filterBy(
+          artworks,
+          allAttributeFilter,
+          'title',
+          'medium',
+          'description',
+          'price',
+          'dimensions',
+          'year'
+        ),
+        sortAttribute
+      )"
+    >
       <img src="artwork.image" alt="" />
       <!-- NEED HELP GETTING IMAGES TO SHOW UP -->
       <h2>{{ artwork.title }}</h2>
       <!-- Need to add in the User who created the artwork -->
       <p>{{ artwork.medium }}</p>
       <p>{{ artwork.description }}</p>
-      <p>{{ artwork.price }}</p>
+      <p>$ {{ artwork.price }}</p>
       <p>{{ artwork.dimensions }}</p>
       <p>{{ artwork.year }}</p>
       <h5 class="category">Posted {{ relativeDate(artwork.created_at) }}</h5>
@@ -22,12 +49,16 @@
 <script>
 import axios from "axios";
 import moment from "moment";
+import Vue2Filters from "vue2-filters";
 
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       artworks: [],
       errors: [],
+      allAttributeFilter: "",
+      sortAttribute: "",
     };
   },
   created: function() {
@@ -45,10 +76,9 @@ export default {
     relativeDate: function(date) {
       return moment(date).fromNow();
     },
-    // Download vue2filters and then un-comment this out
-    // setSortAttribute: function(attribute) {
-    //   this.sortAttribute = attribute;
-    // },
+    setSortAttribute: function(attribute) {
+      this.sortAttribute = attribute;
+    },
   },
 };
 </script>
