@@ -9,6 +9,7 @@ import UsersEdit from "../views/UsersEdit.vue";
 import ArtworksIndex from "../views/ArtworksIndex.vue";
 import ArtworksNew from "../views/ArtworksNew.vue";
 import ArtworksShow from "../views/ArtworksShow.vue";
+import ArtworksEdit from "../views/ArtworksEdit.vue";
 
 Vue.use(VueRouter);
 
@@ -65,6 +66,11 @@ const routes = [
     path: "/artworks/:id",
     name: "artworks-show",
     component: ArtworksShow
+  },
+  {
+    path: "/artworks/:id/edit",
+    name: "artworks-edit",
+    component: ArtworksEdit
   },
 ];
 
