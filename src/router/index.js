@@ -10,6 +10,7 @@ import ArtworksIndex from "../views/ArtworksIndex.vue";
 import ArtworksNew from "../views/ArtworksNew.vue";
 import ArtworksShow from "../views/ArtworksShow.vue";
 import ArtworksEdit from "../views/ArtworksEdit.vue";
+import CollegesIndex from "../views/CollegesIndex.vue";
 
 Vue.use(VueRouter);
 
@@ -71,6 +72,11 @@ const routes = [
     path: "/artworks/:id/edit",
     name: "artworks-edit",
     component: ArtworksEdit
+  },
+  {
+    path: "/colleges",
+    name: "colleges-index",
+    component: CollegesIndex
   },
 ];
 

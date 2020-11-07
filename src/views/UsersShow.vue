@@ -15,8 +15,10 @@
       <button>Edit</button>
     </router-link>
     <div v-for="artwork in user.artworks">
-      <img src="artwork.image" alt="" />
-      <!-- NEED HELP GETTING IMAGES TO SHOW UP -->
+      <!-- <div v-for="image in artwork.images">
+        <p>{{ image.url }}</p>
+      </div> -->
+      <!-- NEED HELP GETTING IMAGES TO SHOW UP (NOT SURE WHY WHAT I COMMENTED-OUT ABOVE DOES NOT WORK, IT WORKS IN ArtworksShow.vue) -->
       <h2>{{ artwork.title }}</h2>
       <p>{{ artwork.medium }}</p>
       <p>{{ artwork.description }}</p>

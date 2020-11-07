@@ -1,12 +1,11 @@
 <template>
   <div class="artworks-show">
-    <!-- <div v-for="image in artwork.images">
-      <img src="artwork.images" alt="" />
-      <img :src="artwork.image" alt="" />
-    </div> -->
+    <div v-for="image in artwork.images">
+      <p>{{ image.url }}</p>
+    </div>
     <div>
-      <!-- NEED TO FIGURE OUT HOW TO PUT MULTIPLE IMAGES IN FOR A SINGLE ARTWORK (the commented-out stuff above is my attempts)-->
       <h2>Title: {{ artwork.title }}</h2>
+      <p>Artist: {{ artwork.user.name }}</p>
       <p>Medium: {{ artwork.medium }}</p>
       <p>Description: {{ artwork.description }}</p>
       <p>Price: $ {{ artwork.price }}</p>
@@ -25,7 +24,10 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      artwork: {},
+      artwork: {
+        user: {},
+        // This user object is unnecessary, but by preloading it here, I avoid the error that pops up when I call artwork.user.name, and it loads before the request returns that data.
+      },
       errors: [],
     };
   },
