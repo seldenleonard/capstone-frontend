@@ -11,6 +11,7 @@ import ArtworksNew from "../views/ArtworksNew.vue";
 import ArtworksShow from "../views/ArtworksShow.vue";
 import ArtworksEdit from "../views/ArtworksEdit.vue";
 import CollegesIndex from "../views/CollegesIndex.vue";
+import CollegesShow from "../views/CollegesShow.vue";
 
 Vue.use(VueRouter);
 
@@ -77,6 +78,11 @@ const routes = [
     path: "/colleges",
     name: "colleges-index",
     component: CollegesIndex
+  },
+  {
+    path: "/colleges/:id",
+    name: "colleges-show",
+    component: CollegesShow
   },
 ];
 

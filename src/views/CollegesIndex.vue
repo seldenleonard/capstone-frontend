@@ -28,7 +28,6 @@
       )"
     >
       <img :src="college.image_url" alt="" />
-      <!-- NEED HELP GETTING IMAGES TO SHOW UP -->
       <h2>{{ college.name }}</h2>
       <p>{{ college.abbreviation }}</p>
       <p>{{ college.city }}</p>
