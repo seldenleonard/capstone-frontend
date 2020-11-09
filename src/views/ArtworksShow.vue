@@ -6,6 +6,7 @@
     <div>
       <h2>Title: {{ artwork.title }}</h2>
       <p>Artist: {{ artwork.user.name }}</p>
+      <p>College: {{ artwork.college.name }}</p>
       <p>Medium: {{ artwork.medium }}</p>
       <p>Description: {{ artwork.description }}</p>
       <p>Price: $ {{ artwork.price }}</p>
@@ -26,7 +27,8 @@ export default {
     return {
       artwork: {
         user: {},
-        // This user object is unnecessary, but by preloading it here, I avoid the error that pops up when I call artwork.user.name, and it loads before the request returns that data.
+        college: {},
+        // These user and college objects are unnecessary, but by preloading them here, I avoid the error that pops up when I call artwork.user.name and artwork.college.name, because now these objects are preloaded before the request returns that data.
       },
       errors: [],
     };
