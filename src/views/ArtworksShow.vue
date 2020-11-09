@@ -1,7 +1,7 @@
 <template>
   <div class="artworks-show">
     <div v-for="image in artwork.images">
-      <p>{{ image.url }}</p>
+      <img :src="image.url" alt="" />
     </div>
     <div>
       <h2>Title: {{ artwork.title }}</h2>

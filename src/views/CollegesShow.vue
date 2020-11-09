@@ -13,13 +13,13 @@
       <p>{{ user.minor }} Minor</p>
       <p>Primary Style of Art is {{ user.art_style }}</p>
       <p>{{ user.bio }}</p>
-      <div v-for="artwork in user.artworks">
-        <p>{{ artwork.title }}</p>
-        <!-- <img :src="image" alt="" /> -->
-        <!-- <div v-for="artwork in user.artworks"> -->
-        <!-- <p>{{ artwork.images.url }}</p> -->
-        <!-- </div> -->
-      </div>
+      <!-- <div v-for="artwork in user.artworks"> -->
+      <!-- <p>{{ artwork.title }}</p> -->
+      <!-- <img :src="image" alt="" /> -->
+      <!-- <div v-for="artwork in user.artworks"> -->
+      <!-- <p>{{ artwork.images.url }}</p> -->
+      <!-- </div> -->
+      <!-- </div> -->
     </div>
   </div>
 </template>

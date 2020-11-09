@@ -28,7 +28,7 @@
         sortAttribute
       )"
     >
-      <img src="artwork.image" alt="" />
+      <img :src="artwork.image" alt="" />
       <!-- NEED HELP GETTING IMAGES TO SHOW UP -->
       <h2>{{ artwork.title }}</h2>
       <!-- Need to add in the User who created the artwork -->

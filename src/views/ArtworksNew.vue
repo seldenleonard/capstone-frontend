@@ -23,15 +23,21 @@
           <input type="number" class="form-control" v-model="price" />
         </div>
         <div class="form-group">
-          <label>dimensions:</label>
-          <input type="number" class="form-control" v-model="dimensions" />
-          <!-- NEED TO MAKE THIS INTO 3 INPUTS (LENGTH, WIDTH, HEIGHT) AND THEN PROCESS THEM AND SEND THEM TO THE DATABASE FORMATTED -->
+          <label>Height:</label>
+          <input type="number" class="form-control" v-model="height" />
+          <label>Width:</label>
+          <input type="number" class="form-control" v-model="width" />
+          <label>Length:</label>
+          <input type="number" class="form-control" v-model="length" />
         </div>
         <div class="form-group">
           <label>Year:</label>
           <input type="number" class="form-control" v-model="year" />
         </div>
-        <!-- NEED TO INCORPORATE INPUT FOR IMAGES (WHICH ARE A DIFFERENT MODEL ENTIRELY) -->
+        <div class="form-group">
+          <label>Image URL:</label>
+          <input type="text" class="form-control" v-model="imageUrl" />
+        </div>
         <input type="submit" class="button" value="Submit" />
       </form>
     </div>
@@ -51,6 +57,10 @@ export default {
       price: "",
       dimensions: "",
       year: "",
+      imageUrl: "",
+      height: "",
+      width: "",
+      length: "",
       errors: [],
     };
   },
@@ -61,8 +71,12 @@ export default {
       formData.append("medium", this.medium);
       formData.append("description", this.description);
       formData.append("price", this.price);
-      formData.append("dimensions", this.dimensions);
+      formData.append(
+        "dimensions",
+        `${this.height}" x ${this.width}" x ${this.length}"`
+      );
       formData.append("year", this.year);
+      formData.append("image_url", this.imageUrl);
       axios
         .post("/api/artworks", formData)
         .then((response) => {
