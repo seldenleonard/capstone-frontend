@@ -20,6 +20,11 @@
       <!-- <p>{{ artwork.images.url }}</p> -->
       <!-- </div> -->
       <!-- </div> -->
+      <!-- THIS IS AN ATTEMPT TO HAVE SOME OF EACH ARTISTS' ARTWORKS IMAGES SHOW UP, BUT IT IS NOT MVP SO DONT BOTHER FOR NOW -->
+      <router-link :to="`/users/${user.id}`">
+        <!-- This^ means same as v-bind -->
+        <button>View Artist</button>
+      </router-link>
     </div>
   </div>
 </template>
