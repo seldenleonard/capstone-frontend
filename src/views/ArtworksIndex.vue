@@ -36,10 +36,12 @@
         <img :src="image.url" alt="" />
       </div>
       <h2>{{ artwork.title }}</h2>
-      <!-- Need to add in the User who created the artwork & Need to add in that User's college as well I tried getting this to work by rendering the colleges partial on the backend view, but am missing something-->
-      <p>{{ artwork.medium }}</p>
-      <p>{{ artwork.description }}</p>
-      <p>$ {{ artwork.price }}</p>
+      <p>Artist: {{ artwork.user.name }}</p>
+      <p>College: {{ artwork.college.name }}</p>
+      >
+      <p>Medium: {{ artwork.medium }}</p>
+      <p>Description: {{ artwork.description }}</p>
+      <p>Price: $ {{ artwork.price }}</p>
       <p>{{ artwork.dimensions }}</p>
       <p>{{ artwork.year }}</p>
       <h5 class="category">Posted {{ relativeDate(artwork.created_at) }}</h5>
