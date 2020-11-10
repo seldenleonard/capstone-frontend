@@ -11,10 +11,12 @@
       <button v-on:click="setSortAttribute('year')">
         Sort by Year
       </button>
-      <!-- <button v-on:click="setSortAttribute('college')">
+      <button v-on:click="setSortAttribute('medium')">
+        Sort by Medium
+      </button>
+      <button v-on:click="setSortAttribute('college')">
         Sort by College
-      </button> -->
-      <!-- IMPLEMENT THIS SORT BUTTON WHEN I GET THE COLLEGES INTO THE NORMAL INDEX VIEW -->
+      </button>
     </div>
 
     <div
@@ -27,7 +29,12 @@
           'description',
           'price',
           'dimensions',
-          'year'
+          'year',
+          'user.name',
+          'college.name',
+          'college.abbreviation',
+          'college.city',
+          'college.state'
         ),
         sortAttribute
       )"
@@ -38,7 +45,6 @@
       <h2>{{ artwork.title }}</h2>
       <p>Artist: {{ artwork.user.name }}</p>
       <p>College: {{ artwork.college.name }}</p>
-      >
       <p>Medium: {{ artwork.medium }}</p>
       <p>Description: {{ artwork.description }}</p>
       <p>Price: $ {{ artwork.price }}</p>
