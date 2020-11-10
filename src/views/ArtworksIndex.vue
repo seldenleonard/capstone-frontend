@@ -11,6 +11,10 @@
       <button v-on:click="setSortAttribute('year')">
         Sort by Year
       </button>
+      <!-- <button v-on:click="setSortAttribute('college')">
+        Sort by College
+      </button> -->
+      <!-- IMPLEMENT THIS SORT BUTTON WHEN I GET THE COLLEGES INTO THE NORMAL INDEX VIEW -->
     </div>
 
     <div
@@ -32,8 +36,7 @@
         <img :src="image.url" alt="" />
       </div>
       <h2>{{ artwork.title }}</h2>
-      <!-- Need to add in the User who created the artwork -->
-      <!-- Need to add in that User's college as well -->
+      <!-- Need to add in the User who created the artwork & Need to add in that User's college as well I tried getting this to work by rendering the colleges partial on the backend view, but am missing something-->
       <p>{{ artwork.medium }}</p>
       <p>{{ artwork.description }}</p>
       <p>$ {{ artwork.price }}</p>

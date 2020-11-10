@@ -12,6 +12,7 @@
       <p>Price: $ {{ artwork.price }}</p>
       <p>Dimensions: {{ artwork.dimensions }}</p>
       <p>Year: {{ artwork.year }}</p>
+      <h5 class="category">Posted {{ relativeDate(artwork.created_at) }}</h5>
       <button>
         <router-link :to="`/artworks/${artwork.id}/edit`">Edit</router-link>
       </button>
@@ -21,6 +22,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 
 export default {
   data: function() {
@@ -43,6 +45,11 @@ export default {
       .catch((error) => {
         this.errors = error.response.data.errors;
       });
+  },
+  methods: {
+    relativeDate: function(date) {
+      return moment(date).fromNow();
+    },
   },
 };
 </script>
