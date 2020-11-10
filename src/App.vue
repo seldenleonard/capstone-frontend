@@ -1,13 +1,19 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/signup">Signup</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/logout">Logout</router-link> |
-      <router-link to="/artworks">Artworks</router-link> |
-      <router-link to="/colleges">Colleges</router-link>
+      <div><router-link to="/">Home</router-link></div>
+      <div><router-link to="/about">About</router-link></div>
+      <div v-if="!isLoggedIn()">
+        <router-link to="/signup">Signup</router-link>
+      </div>
+      <div v-if="!isLoggedIn()">
+        <router-link to="/login">Login</router-link>
+      </div>
+      <div v-if="isLoggedIn()">
+        <router-link to="/logout">Logout</router-link>
+      </div>
+      <div><router-link to="/artworks">Artworks</router-link></div>
+      <div><router-link to="/colleges">Colleges</router-link></div>
     </div>
     <router-view />
   </div>
@@ -35,3 +41,20 @@
   color: #42b983;
 }
 </style>
+
+<script>
+export default {
+  data: function() {
+    return {};
+  },
+  methods: {
+    isLoggedIn: function() {
+      return localStorage.getItem("jwt");
+    },
+    // getUserId: function() {
+    //   return parseInt(localStorage.getItem("user_id"));
+    // },
+    // LOOK AT REFERENCES JENEEN GAVE ME AND DETERMINE IF I NEED TO IMPLEMENT THIS
+  },
+};
+</script>
