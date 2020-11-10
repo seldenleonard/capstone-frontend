@@ -35,7 +35,6 @@
       <button class="" v-on:click="destroyArtwork()">
         Delete
       </button>
-      <!-- NEITHER MY UPDATE OR DELETE BUTTONS ARE WORKING -->
     </form>
   </div>
 </template>

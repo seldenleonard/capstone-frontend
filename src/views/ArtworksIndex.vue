@@ -28,8 +28,9 @@
         sortAttribute
       )"
     >
-      <img :src="artwork.image" alt="" />
-      <!-- NEED HELP GETTING IMAGES TO SHOW UP -->
+      <div v-for="image in artwork.images">
+        <img :src="image.url" alt="" />
+      </div>
       <h2>{{ artwork.title }}</h2>
       <!-- Need to add in the User who created the artwork -->
       <!-- Need to add in that User's college as well -->
