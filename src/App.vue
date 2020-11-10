@@ -51,10 +51,9 @@ export default {
     isLoggedIn: function() {
       return localStorage.getItem("jwt");
     },
-    // getUserId: function() {
-    //   return parseInt(localStorage.getItem("user_id"));
-    // },
-    // LOOK AT REFERENCES JENEEN GAVE ME AND DETERMINE IF I NEED TO IMPLEMENT THIS
+    getUserId: function() {
+      return parseInt(localStorage.getItem("user_id"));
+    },
   },
 };
 </script>
