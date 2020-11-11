@@ -13,9 +13,15 @@
       <p>Dimensions: {{ artwork.dimensions }}</p>
       <p>Year: {{ artwork.year }}</p>
       <h5 class="category">Posted {{ relativeDate(artwork.created_at) }}</h5>
-      <button>
-        <router-link :to="`/artworks/${artwork.id}/edit`">Edit</router-link>
-      </button>
+      <router-link
+        v-if="artwork.user.id === $parent.getUserId()"
+        :to="`/artworks/${artwork.id}/edit`"
+      >
+        <button>Edit Artwork</button>
+      </router-link>
+      <!-- NOTE: IN DANI'S SCREENCAST, SHE CHANGES THIS TRIPLE EQUALS SIGN INTO A DOUBLE EQUALS SIGN BECAUSE LOCALSTORAGE HOLDS A USER ID AS A STRING BUT THEN ITS BEING COMPARED TO A NUMBER. HOWEVER, I CHECKED IN MY APP, AND MY LOCALSTORAGE FOR SOME REASON STORES IT AS A NUMBER (THE TWO LINES OF CODE BELOW DEMONSTRATE THAT). ANYWAY, SO I LEFT THE TRIPLE EQUALS SIGN. -->
+      <!-- <p>{{ typeof $parent.getUserId() }}</p>
+      <p>{{ typeof artwork.user.id }}</p> -->
     </div>
   </div>
 </template>
