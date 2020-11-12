@@ -29,6 +29,8 @@
         <label>Artist:</label>
         <input type="text" class="form-control" v-model="user.artist" />
       </div>
+      <!-- IF ARTIST IS FALSE, THEN I NEED THE FOLLOWING USER INPUTS TO NOT BE SHOWN, AND ACTUALLY TURN BLANK IN THE DATABASE -->
+
       <div class="form-group">
         <label>Bio:</label>
         <input type="text" class="form-control" v-model="user.bio" />

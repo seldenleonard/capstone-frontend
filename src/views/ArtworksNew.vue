@@ -80,7 +80,6 @@ export default {
       axios
         .post("/api/artworks", formData)
         .then((response) => {
-          this.$parent.flashMessage = "Artwork created successfully";
           this.$router.push("/artworks");
         })
         .catch((error) => {

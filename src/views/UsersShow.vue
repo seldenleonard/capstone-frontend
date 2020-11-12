@@ -14,7 +14,6 @@
       v-if="user.id === $parent.getUserId()"
       :to="`/users/${user.id}/edit`"
     >
-      <!-- NOTE: IN DANI'S SCREENCAST, SHE CHANGES THIS TRIPLE EQUALS SIGN INTO A DOUBLE EQUALS SIGN BECAUSE LOCALSTORAGE HOLDS A USER ID AS A STRING BUT THEN ITS BEING COMPARED TO A NUMBER. HOWEVER, I CHECKED IN MY APP, AND MY LOCALSTORAGE FOR SOME REASON STORES IT AS A NUMBER (WEIRD). ANYWAY, SO I LEFT THE TRIPLE EQUALS SIGN. -->
       <button>Edit Profile</button>
     </router-link>
     <!-- I ADDED THIS FUNCTIONALITY SAYING THAT IF THE CURRENT USER IS LOOKING AT THEIR PROFILE, AN EDIT BUTTON WILL POP UP, BUT IF I WOULD LIKE TO HAVE THAT FUNCTIONALITY FOR SEEING THAT USER EDIT PAGE AT ALL, CAN I JUST PUT THIS SAME V-IF IN MY WHOLE UsersEdit.vue div? I beleive the answer is yes, especially if I want to make "Edit Profile" an option in my navbar -->
@@ -22,7 +21,6 @@
       <div v-for="image in artwork.images">
         <img :src="image.url" alt="" />
       </div>
-      <!-- NEED HELP GETTING IMAGES TO SHOW UP (NOT SURE WHY WHAT I COMMENTED-OUT ABOVE DOES NOT WORK, IT WORKS IN ArtworksShow.vue) -->
       <h2>{{ artwork.title }}</h2>
       <p>{{ artwork.medium }}</p>
       <p>{{ artwork.description }}</p>
@@ -34,7 +32,6 @@
         v-if="user.id === $parent.getUserId()"
         :to="`/artworks/${artwork.id}/edit`"
       >
-        <!-- NOTE: IN DANI'S SCREENCAST, SHE CHANGES THIS TRIPLE EQUALS SIGN INTO A DOUBLE EQUALS SIGN BECAUSE LOCALSTORAGE HOLDS A USER ID AS A STRING BUT THEN ITS BEING COMPARED TO A NUMBER. HOWEVER, I CHECKED IN MY APP, AND MY LOCALSTORAGE FOR SOME REASON STORES IT AS A NUMBER (WEIRD). ANYWAY, SO I LEFT THE TRIPLE EQUALS SIGN. -->
         <button>Edit Artwork</button>
       </router-link>
     </div>
