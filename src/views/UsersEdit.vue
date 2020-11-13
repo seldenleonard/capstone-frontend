@@ -25,10 +25,6 @@
           v-model="user.password_confirmation"
         />
       </div>
-      <div class="form-group">
-        <label>Artist:</label>
-        <input type="text" class="form-control" v-model="user.artist" />
-      </div>
       <!-- IF ARTIST IS FALSE, THEN I NEED THE FOLLOWING USER INPUTS TO NOT BE SHOWN, AND ACTUALLY TURN BLANK IN THE DATABASE -->
 
       <div class="form-group">
@@ -65,7 +61,7 @@
       </div>
       <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
-    <!-- <button v-on:click="destroyUser">Delete</button> Figure this button out -->
+    <button class="" v-on:click="destroyUser()">Delete</button>
   </div>
 </template>
 
@@ -96,8 +92,8 @@ export default {
         name: this.user.name,
         email: this.user.email,
         password: this.user.password,
-        password_confirmation: this.user.password_confirmation, // Will likely get rid of this when I do the password authentication stuff that we had a mini-lesson on today (Nov 3)
-        artist: this.user.artist,
+        password_confirmation: this.user.password_confirmation, // Will likely get rid of this password_confrimation when I do the password authentication stuff that we had a mini-lesson on today (Nov 3)
+        // artist: this.user.artist,
         bio: this.user.bio,
         art_style: this.user.art_style,
         image_url: this.user.image_url,
@@ -114,6 +110,19 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    destroyUser: function() {
+      if (confirm("Are you sure you would like to delete this account?")) {
+        axios
+          .delete(`/api/users/${this.user.id}`)
+          .then((response) => {
+            console.log("User has successfully been destroyed", response.data);
+            this.$router.push("/users");
+          })
+          .catch((error) => {
+            this.errors = error.response.data.errors;
+          });
+      }
     },
   },
 };

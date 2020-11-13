@@ -43,13 +43,12 @@
         <img :src="image.url" alt="" />
       </div>
       <h2>{{ artwork.title }}</h2>
-      <p>Artist: {{ artwork.user.name }}</p>
-      <p>College: {{ artwork.college.name }}</p>
+      <p>Artist: {{ artwork.user.name }}, {{ artwork.college.name }}</p>
+      <p>Created: {{ artwork.year }}</p>
+      <p>{{ artwork.dimensions }}</p>
       <p>Medium: {{ artwork.medium }}</p>
       <p>Description: {{ artwork.description }}</p>
-      <p>Price: $ {{ artwork.price }}</p>
-      <p>{{ artwork.dimensions }}</p>
-      <p>{{ artwork.year }}</p>
+      <p v-if="artwork.price">Price: $ {{ artwork.price }}</p>
       <h5 class="category">Posted {{ relativeDate(artwork.created_at) }}</h5>
       <!-- Note: I will need to put a v:if in my routerlink tag to say that if current user id from local storage matches the id of the user show, then the edit button will be available (need to do this for the user edit button above as well). it will look something like this: v-if="artwork.user.id === $parent.getUserId()" -->
       <router-link :to="`/artworks/${artwork.id}`">

@@ -32,9 +32,7 @@
       <div>
         <input type="submit" class="" value="Update" />
       </div>
-      <button class="" v-on:click="destroyArtwork()">
-        Delete
-      </button>
+      <button class="" v-on:click="destroyArtwork()">Delete</button>
     </form>
   </div>
 </template>
@@ -75,11 +73,14 @@ export default {
         });
     },
     destroyArtwork: function() {
-      if (confirm("Are you sure you want to delete this artwork?")) {
+      if (confirm("Are you sure you would like to delete this artwork?")) {
         axios
           .delete(`/api/artworks/${this.artwork.id}`)
           .then((response) => {
-            console.log("Success", response.data);
+            console.log(
+              "Artwork has successfully been destroyed",
+              response.data
+            );
             this.$router.push("/artworks");
           })
           .catch((error) => {

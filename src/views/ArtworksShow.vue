@@ -9,7 +9,7 @@
       <p>College: {{ artwork.college.name }}</p>
       <p>Medium: {{ artwork.medium }}</p>
       <p>Description: {{ artwork.description }}</p>
-      <p>Price: $ {{ artwork.price }}</p>
+      <p v-if="artwork.price">Price: $ {{ artwork.price }}</p>
       <p>Dimensions: {{ artwork.dimensions }}</p>
       <p>Year: {{ artwork.year }}</p>
       <p>Upvotes: {{ artwork.upvotes }}</p>
@@ -25,7 +25,6 @@
       Destroy Upvote
     </button>
     <button v-else v-on:click="createUpvote()">Upvote</button>
-    <!-- I WAS CONSIDERING MAKING THIS BUTTON DYNAMIC IN THAT IT WOULD SAY "UPVOTE" AND THEN ONCE CLICKED IT WOULD SAY "REMOVE UPVOTE", BUT I GUESS IF ITS GOING TO BE A HEART OR A THUMBS UP, MAYBE I SHOULD WAIT FOR MY THEME? -->
   </div>
 </template>
 
@@ -59,8 +58,6 @@ export default {
     relativeDate: function(date) {
       return moment(date).fromNow();
     },
-
-    // ASK DANI FOR HELP WITH UPVOTES
     createUpvote: function() {
       let params = {
         artwork_id: this.artwork.id,
@@ -85,7 +82,6 @@ export default {
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
-          // CARL SAYS LOOK INTO HOW TO PASS PARAMS WITH A DELETE REQUEST, AND THEN FIND/ID THE UPVOTE I WANT TOO DESTROY BASED ON THOSE REQUESTS, THEN ID DESTROY IT
         });
     },
   },

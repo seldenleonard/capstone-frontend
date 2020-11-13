@@ -30,12 +30,10 @@
       <img :src="college.image_url" alt="" />
       <h2>{{ college.name }}</h2>
       <p>{{ college.abbreviation }}</p>
-      <p>{{ college.city }}</p>
-      <p>{{ college.state }}</p>
+      <p>{{ college.city }}, {{ college.state }}</p>
       <p>{{ college.bio }}</p>
       <h5 class="category">
-        <!-- {{ college.users.length }} of student artists showing work -->
-        <!-- DONT QUITE UNDERSTAND WHY THIS^ DOESNT WORK -->
+        {{ college.users.length }} Student Artists Represented
       </h5>
       <router-link :to="`/colleges/${college.id}`">
         <button>Explore Student Artists</button>

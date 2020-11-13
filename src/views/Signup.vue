@@ -1,6 +1,6 @@
 <template>
   <div class="signup">
-    <form v-on:submit.prevent="submit()">
+    <form v-on:submit.prevent="createUser()">
       <h1>Signup</h1>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
@@ -33,16 +33,21 @@
       </div>
       <div class="form-group">
         <label>Style of Art:</label>
-        <input type="text" class="form-control" v-model="art_style" />
+        <input type="text" class="form-control" v-model="artStyle" />
       </div>
       <div class="form-group">
         <label>Profile Image:</label>
-        <input type="text" class="form-control" v-model="image_url" />
+        <input
+          type="file"
+          class="form-control"
+          v-on:change="setFile($event)"
+          ref="fileInput"
+        />
       </div>
 
       <div class="form-group">
         <label
-          >I am a current student artist attending a college or university ...
+          >I am student artist attending a college or university ...
         </label>
         <input type="boolean" class="form-control" v-model="artist" />
       </div>
@@ -51,17 +56,21 @@
 
       <div class="form-group">
         <label>Name of School:</label>
-        <input type="text" class="form-control" v-model="college" />
+        <input type="text" class="form-control" v-model="college_id" />
       </div>
       <!-- Need to make this a dropdown menu -->
       <!-- also need to add a note saying "If your college or university is not listed in the dropdown menu, we apologize but your school is not currently supported by this platform" -->
+      <div class="form-group">
+        <label>Major:</label>
+        <input type="text" class="form-control" v-model="major" />
+      </div>
       <div class="form-group">
         <label>Minor:</label>
         <input type="text" class="form-control" v-model="minor" />
       </div>
       <div class="form-group">
         <label>Graduation Year:</label>
-        <input type="number" class="form-control" v-model="graduation_year" />
+        <input type="number" class="form-control" v-model="graduationYear" />
       </div>
 
       <!-- ADDITIONS END HERE -->
@@ -82,31 +91,46 @@ export default {
       password: "",
       passwordConfirmation: "",
       bio: "",
-      art_style: "",
-      image_url: "",
+      artStyle: "",
+      image: "",
       artist: "",
-      college: "",
+      college_id: "",
       major: "",
       minor: "",
-      graduation_year: "",
+      graduationYear: "",
       errors: [],
     };
   },
   methods: {
-    submit: function() {
-      var params = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        password_confirmation: this.passwordConfirmation,
-      };
+    setFile: function(event) {
+      if (event.target.files.length > 0) {
+        this.image = event.target.files[0];
+      }
+    },
+    createUser: function() {
+      let formData = new FormData();
+      formData.append("name", this.name);
+      formData.append("email", this.email);
+      formData.append("password", this.password);
+      formData.append("password_confirmation", this.passwordConfirmation);
+      formData.append("bio", this.bio);
+      formData.append("art_style", this.artStyle);
+      if (this.image) {
+        formData.append("image", this.image);
+      }
+      formData.append("artist", this.artist);
+      formData.append("college_id", this.college_id);
+      formData.append("major", this.major);
+      formData.append("minor", this.minor);
+      formData.append("graduation_year", this.graduationYear);
       axios
-        .post("/api/users", params)
+        .post("/api/users", formData)
         .then((response) => {
           this.$router.push("/login");
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
+          console.log(this.errors);
         });
     },
   },
