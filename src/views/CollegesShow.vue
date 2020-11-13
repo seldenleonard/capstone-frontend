@@ -11,7 +11,7 @@
       <p>Class of {{ user.graduation_year }}</p>
       <p>{{ user.major }} Major</p>
       <p>{{ user.minor }} Minor</p>
-      <p>Primary Style of Art is {{ user.art_style }}</p>
+      <p>Style of Art is {{ user.art_style }}</p>
       <p>{{ user.bio }}</p>
       <!-- <div v-for="artwork in user.artworks"> -->
       <!-- <p>{{ artwork.title }}</p> -->

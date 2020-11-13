@@ -7,12 +7,12 @@
       <h2>Title: {{ artwork.title }}</h2>
       <p>Artist: {{ artwork.user.name }}</p>
       <p>College: {{ artwork.college.name }}</p>
+      <p>Date: {{ artwork.year }}</p>
       <p>Medium: {{ artwork.medium }}</p>
+      <p>Dimensions: {{ artwork.dimensions }}</p>
       <p>Description: {{ artwork.description }}</p>
       <p v-if="artwork.price">Price: $ {{ artwork.price }}</p>
-      <p>Dimensions: {{ artwork.dimensions }}</p>
-      <p>Year: {{ artwork.year }}</p>
-      <p>Upvotes: {{ artwork.upvotes }}</p>
+      <p>Upvotes: {{ artwork.upvotes_count }}</p>
       <h5 class="category">Posted {{ relativeDate(artwork.created_at) }}</h5>
       <router-link
         v-if="artwork.user.id === $parent.getUserId()"
@@ -20,6 +20,9 @@
       >
         <button>Edit Artwork</button>
       </router-link>
+      <router-link :to="`/users/${artwork.user.id}`"
+        ><button>View Artist</button></router-link
+      >
     </div>
     <button v-if="artwork.upvote" v-on:click="destroyUpvote()">
       Destroy Upvote
@@ -66,7 +69,7 @@ export default {
         .post("/api/upvotes", params)
         .then((response) => {
           this.artwork.upvote = true;
-          this.artwork.upvotes++;
+          this.artwork.upvotes_count++;
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
@@ -78,7 +81,7 @@ export default {
         .delete(`/api/upvotes/${this.artwork.id}`)
         .then((response) => {
           this.artwork.upvote = false;
-          this.artwork.upvotes--;
+          this.artwork.upvotes_count--;
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
