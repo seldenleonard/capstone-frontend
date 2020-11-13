@@ -10,6 +10,9 @@
         <router-link to="/login">Login</router-link>
       </div>
       <div v-if="isLoggedIn()">
+        <router-link :to="`/users/${getUserId()}`">My Profile</router-link>
+      </div>
+      <div v-if="isLoggedIn()">
         <router-link to="/logout">Logout</router-link>
       </div>
       <div><router-link to="/artworks">Artworks</router-link></div>
