@@ -1,5 +1,5 @@
 <template>
-  <div class="users-new">
+  <div class="users-edit">
     <form v-on:submit.prevent="updateUser()">
       <h1>Update User</h1>
       <ul>
@@ -17,6 +17,7 @@
         <label>Password:</label>
         <input type="text" class="form-control" v-model="user.password" />
       </div>
+      <!-- NEED TO FIGURE OUT HOW I CAN LEAVE PASSWORD BLANK -- RIGHT NOW IF LEFT BLANK IT THINKS IM TRYING TO CHANGE TO PASSWORD TO AN EMPTY STRING INSTEAD OF NO CHANGE -->
       <div class="form-group">
         <label>Password Confirmation:</label>
         <input
@@ -25,19 +26,10 @@
           v-model="user.password_confirmation"
         />
       </div>
-      <!-- IF ARTIST IS FALSE, THEN I NEED THE FOLLOWING USER INPUTS TO NOT BE SHOWN, AND ACTUALLY TURN BLANK IN THE DATABASE -->
-
+      <!-- IF ARTIST IS FALSE, THEN I NEED THE FOLLOWING USER INPUTS TO NOT BE SHOWN -->
       <div class="form-group">
-        <label>Bio:</label>
-        <input type="text" class="form-control" v-model="user.bio" />
-      </div>
-      <div class="form-group">
-        <label>Art Style:</label>
+        <label>Style of Art:</label>
         <input type="text" class="form-control" v-model="user.art_style" />
-      </div>
-      <div class="form-group">
-        <label>Image:</label>
-        <input type="text" class="form-control" v-model="user.image_url" />
       </div>
       <div class="form-group">
         <label>College:</label>
@@ -54,11 +46,25 @@
       <div class="form-group">
         <label>Graduation Year:</label>
         <input
-          type="text"
+          type="number"
           class="form-control"
           v-model="user.graduation_year"
         />
       </div>
+      <div class="form-group">
+        <label>Bio:</label>
+        <input type="text" class="form-control" v-model="user.bio" />
+      </div>
+      <div class="form-group">
+        <label>Profile Image:</label>
+        <input
+          type="file"
+          class="form-control"
+          v-on:change="setFile($event)"
+          ref="fileInput"
+        />
+      </div>
+
       <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
     <button class="" v-on:click="destroyUser()">Delete</button>
@@ -71,6 +77,7 @@ import axios from "axios";
 export default {
   data: function() {
     return {
+      image: "",
       user: {},
       errors: [],
     };
@@ -87,12 +94,17 @@ export default {
       });
   },
   methods: {
+    setFile: function(event) {
+      if (event.target.files.length > 0) {
+        this.image = event.target.files[0];
+      }
+    },
     updateUser: function() {
       let params = {
         name: this.user.name,
         email: this.user.email,
         password: this.user.password,
-        password_confirmation: this.user.password_confirmation, // Will likely get rid of this password_confrimation when I do the password authentication stuff that we had a mini-lesson on today (Nov 3)
+        password_confirmation: this.user.password_confirmation,
         // artist: this.user.artist,
         bio: this.user.bio,
         art_style: this.user.art_style,
@@ -102,13 +114,29 @@ export default {
         minor: this.user.minor,
         graduation_year: this.user.graduation_year,
       };
+      let formData = new FormData();
+      // formData.append("name", this.name);
+      // formData.append("email", this.email);
+      // formData.append("password", this.password);
+      // formData.append("password_confirmation", this.passwordConfirmation);
+      // // formData.append("artist", this.artist);
+      // formData.append("art_style", this.artStyle);
+      // formData.append("college_id", this.college_id);
+      // formData.append("major", this.major);
+      // formData.append("minor", this.minor);
+      // formData.append("graduation_year", this.graduationYear);
+      // formData.append("bio", this.bio);
+      if (this.image) {
+        formData.append("image", this.image);
+      }
       axios
-        .patch(`/api/users/${this.user.id}`, params)
+        .patch(`/api/users/${this.user.id}`, params, formData)
         .then((response) => {
           this.$router.push(`/users/${this.user.id}`);
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
+          console.log(this.errors);
         });
     },
     destroyUser: function() {

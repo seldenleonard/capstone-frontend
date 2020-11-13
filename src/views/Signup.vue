@@ -18,42 +18,25 @@
         <input type="password" class="form-control" v-model="password" />
       </div>
       <div class="form-group">
-        <label>Password confirmation:</label>
+        <label>Password Confirmation:</label>
         <input
           type="password"
           class="form-control"
           v-model="passwordConfirmation"
         />
       </div>
-
-      <!-- ADDITIONS TO SIGNUP -->
-      <div class="form-group">
-        <label>Bio:</label>
-        <input type="text" class="form-control" v-model="bio" />
-      </div>
-      <div class="form-group">
-        <label>Style of Art:</label>
-        <input type="text" class="form-control" v-model="artStyle" />
-      </div>
-      <div class="form-group">
-        <label>Profile Image:</label>
-        <input
-          type="file"
-          class="form-control"
-          v-on:change="setFile($event)"
-          ref="fileInput"
-        />
-      </div>
-
       <div class="form-group">
         <label
-          >I am student artist attending a college or university ...
+          >Are you a student artist attending a college or university?
         </label>
         <input type="boolean" class="form-control" v-model="artist" />
       </div>
       <!-- Need to make this have two checkboxes, with "yes" or "no" -->
       <!-- If the user selects no, then nothing happens, but if the user selects "yes", the rest of the inputs (below) will appear -->
-
+      <div class="form-group">
+        <label>Style of Art:</label>
+        <input type="text" class="form-control" v-model="artStyle" />
+      </div>
       <div class="form-group">
         <label>Name of School:</label>
         <input type="text" class="form-control" v-model="college_id" />
@@ -72,8 +55,19 @@
         <label>Graduation Year:</label>
         <input type="number" class="form-control" v-model="graduationYear" />
       </div>
-
-      <!-- ADDITIONS END HERE -->
+      <div class="form-group">
+        <label>Bio:</label>
+        <input type="text" class="form-control" v-model="bio" />
+      </div>
+      <div class="form-group">
+        <label>Profile Image:</label>
+        <input
+          type="file"
+          class="form-control"
+          v-on:change="setFile($event)"
+          ref="fileInput"
+        />
+      </div>
 
       <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
@@ -90,14 +84,14 @@ export default {
       email: "",
       password: "",
       passwordConfirmation: "",
-      bio: "",
-      artStyle: "",
-      image: "",
       artist: "",
+      artStyle: "",
       college_id: "",
       major: "",
       minor: "",
       graduationYear: "",
+      bio: "",
+      image: "",
       errors: [],
     };
   },
@@ -113,16 +107,16 @@ export default {
       formData.append("email", this.email);
       formData.append("password", this.password);
       formData.append("password_confirmation", this.passwordConfirmation);
-      formData.append("bio", this.bio);
-      formData.append("art_style", this.artStyle);
-      if (this.image) {
-        formData.append("image", this.image);
-      }
       formData.append("artist", this.artist);
+      formData.append("art_style", this.artStyle);
       formData.append("college_id", this.college_id);
       formData.append("major", this.major);
       formData.append("minor", this.minor);
       formData.append("graduation_year", this.graduationYear);
+      formData.append("bio", this.bio);
+      if (this.image) {
+        formData.append("image", this.image);
+      }
       axios
         .post("/api/users", formData)
         .then((response) => {
