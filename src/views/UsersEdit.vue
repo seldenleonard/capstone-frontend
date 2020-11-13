@@ -27,42 +27,44 @@
         />
       </div>
       <!-- IF ARTIST IS FALSE, THEN I NEED THE FOLLOWING USER INPUTS TO NOT BE SHOWN -->
-      <div class="form-group">
-        <label>Style of Art:</label>
-        <input type="text" class="form-control" v-model="user.art_style" />
-      </div>
-      <div class="form-group">
-        <label>College:</label>
-        <input type="text" class="form-control" v-model="user.college_id" />
-      </div>
-      <div class="form-group">
-        <label>Major:</label>
-        <input type="text" class="form-control" v-model="user.major" />
-      </div>
-      <div class="form-group">
-        <label>Minor:</label>
-        <input type="text" class="form-control" v-model="user.minor" />
-      </div>
-      <div class="form-group">
-        <label>Graduation Year:</label>
-        <input
-          type="number"
-          class="form-control"
-          v-model="user.graduation_year"
-        />
-      </div>
-      <div class="form-group">
-        <label>Bio:</label>
-        <input type="text" class="form-control" v-model="user.bio" />
-      </div>
-      <div class="form-group">
-        <label>Profile Image:</label>
-        <input
-          type="file"
-          class="form-control"
-          v-on:change="setFile($event)"
-          ref="fileInput"
-        />
+      <div v-if="user.artist">
+        <div class="form-group">
+          <label>Style of Art:</label>
+          <input type="text" class="form-control" v-model="user.art_style" />
+        </div>
+        <div class="form-group">
+          <label>College:</label>
+          <input type="text" class="form-control" v-model="user.college_id" />
+        </div>
+        <div class="form-group">
+          <label>Major:</label>
+          <input type="text" class="form-control" v-model="user.major" />
+        </div>
+        <div class="form-group">
+          <label>Minor:</label>
+          <input type="text" class="form-control" v-model="user.minor" />
+        </div>
+        <div class="form-group">
+          <label>Graduation Year:</label>
+          <input
+            type="number"
+            class="form-control"
+            v-model="user.graduation_year"
+          />
+        </div>
+        <div class="form-group">
+          <label>Bio:</label>
+          <input type="text" class="form-control" v-model="user.bio" />
+        </div>
+        <div class="form-group">
+          <label>Profile Image:</label>
+          <input
+            type="file"
+            class="form-control"
+            v-on:change="setFile($event)"
+            ref="fileInput"
+          />
+        </div>
       </div>
 
       <input type="submit" class="btn btn-primary" value="Submit" />

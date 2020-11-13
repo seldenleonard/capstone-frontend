@@ -37,7 +37,7 @@
         />
         <label for="checkbox">{{ artist }}</label>
       </div>
-      <!-- Need to make this have two checkboxes, with "yes" or "no" -->
+      <!-- Would preferably have two checkboxes, with "yes" or "no", but this will do. Would at least like to capitalize the "true" or "false" if I keep it how it is right now -->
       <!-- If the user selects no, then nothing happens, but if the user selects "yes", the rest of the inputs (below) will appear -->
       <div v-if="artist">
         <div class="form-group">
