@@ -46,8 +46,13 @@
         </div>
         <div class="form-group">
           <label>Name of School:</label>
-          <input type="text" class="form-control" v-model="college_id" />
+          <select v-model="collegeId">
+            <option v-for="college in colleges" v-bind:value="college.id">
+              {{ college.name }}
+            </option>
+          </select>
         </div>
+
         <!-- Need to make this a dropdown menu -->
         <!-- also need to add a note saying "If your college or university is not listed in the dropdown menu, we apologize but your school is not currently supported by this platform" -->
 
@@ -95,14 +100,23 @@ export default {
       passwordConfirmation: "",
       artist: "true",
       artStyle: "",
-      college_id: "",
+      collegeId: "",
       major: "",
       minor: "",
       graduationYear: "",
       bio: "",
       image: "",
+      colleges: [],
       errors: [],
     };
+  },
+
+  created: function() {
+    console.log(this.collegeId);
+    axios.get("api/colleges").then((response) => {
+      console.log(response.data);
+      this.colleges = response.data;
+    });
   },
   methods: {
     setFile: function(event) {
@@ -118,7 +132,7 @@ export default {
       formData.append("password_confirmation", this.passwordConfirmation);
       formData.append("artist", this.artist);
       formData.append("art_style", this.artStyle);
-      formData.append("college_id", this.college_id);
+      formData.append("college_id", this.collegeId);
       formData.append("major", this.major);
       formData.append("minor", this.minor);
       formData.append("graduation_year", this.graduationYear);
