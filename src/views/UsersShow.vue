@@ -5,21 +5,19 @@
     <router-link :to="`/colleges/${user.college_id}`">
       <p>{{ user.college_name }}</p>
     </router-link>
-    <p>Class of {{ user.graduation_year }}</p>
-    <p>Major: {{ user.major }}</p>
-    <p>Minor: {{ user.minor }}</p>
-    <p>Style of Art: {{ user.art_style }}</p>
-    <p>Bio: {{ user.bio }}</p>
-    <p>Contact: {{ user.email }}</p>
-    <!-- THE ISSUE HERE IS THAT FOR NON-ARTISTS WHO DONT HAVE DATA IN MOST OF THESE ATTRIBUTES, THE HTML TEXT (ATTRIBUTE LABEL) SHOWS UP AND THERES THERES NO DATA TO FILL IT OUT -->
-
+    <p v-if="user.graduation_year">Class of {{ user.graduation_year }}</p>
+    <p v-if="user.major">Major: {{ user.major }}</p>
+    <p v-if="user.minor">Minor: {{ user.minor }}</p>
+    <p v-if="user.art_style">Style of Art: {{ user.art_style }}</p>
+    <p v-if="user.bio">Bio: {{ user.bio }}</p>
+    <p v-if="user.artist">Contact: {{ user.email }}</p>
+    <p v-else>Email: {{ user.email }}</p>
     <router-link
       v-if="user.id === $parent.getUserId()"
       :to="`/users/${user.id}/edit`"
     >
       <button>Edit Profile</button>
     </router-link>
-    <!-- I ADDED THIS FUNCTIONALITY SAYING THAT IF THE CURRENT USER IS LOOKING AT THEIR PROFILE, AN EDIT BUTTON WILL POP UP, BUT IF I WOULD LIKE TO HAVE THAT FUNCTIONALITY FOR SEEING THAT USER EDIT PAGE AT ALL, CAN I JUST PUT THIS SAME V-IF IN MY WHOLE UsersEdit.vue div? I beleive the answer is yes, especially if I want to make "Edit Profile" an option in my navbar -->
     <div v-for="artwork in user.artworks">
       <div v-for="image in artwork.images">
         <img :src="image.url" alt="" />
@@ -72,7 +70,6 @@ export default {
     relativeDate: function(date) {
       return moment(date).fromNow();
     },
-    // MY createUpvote AND destroyUpvote ACTIONS ALMOST WORK, BUT IM GETTING THE ERROR THAT "id" IS UNDEFINED (same thing in my ArtworksIndex.vue)
     createUpvote: function() {
       let params = {
         artwork_id: this.artwork.id,
