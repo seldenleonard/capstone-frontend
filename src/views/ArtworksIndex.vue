@@ -58,10 +58,10 @@
       <p>Upvotes: {{ artwork.upvotes_count }}</p>
       <h5 class="category">Posted {{ relativeDate(artwork.created_at) }}</h5>
       <!-- CONSIDER REMOVING SOME OF THIS INFO AND LEAVING ONLY "artwork.title", "artwork.user.name", "artist.college.abbreviation", "artist.college.graduation_year", "artwork.year", "artwork.upvotes.count", and maybe "artwork.medium" -->
-      <button v-if="artwork.upvote" v-on:click="destroyUpvote()">
+      <button v-if="artwork.upvote" v-on:click="destroyUpvote(artwork)">
         Destroy Upvote
       </button>
-      <button v-else v-on:click="createUpvote()">Upvote</button>
+      <button v-else v-on:click="createUpvote(artwork)">Upvote</button>
       <!-- Note: I will need to put a v:if in my routerlink tag to say that if current user id from local storage matches the id of the user show, then the edit button will be available (need to do this for the user edit button above as well). it will look something like this: v-if="artwork.user.id === $parent.getUserId()" -->
       <router-link :to="`/artworks/${artwork.id}`">
         <button>More Info</button>
@@ -103,28 +103,28 @@ export default {
     setSortAttribute: function(attribute) {
       this.sortAttribute = attribute;
     },
-    // MY createUpvote AND destroyUpvote ACTIONS ALMOST WORK, BUT IM GETTING THE ERROR THAT "id" IS UNDEFINED (same thing in my UsersShow.vue)
-    createUpvote: function() {
+    createUpvote: function(artwork) {
       let params = {
-        artwork_id: this.artwork.id,
+        artwork_id: artwork.id,
       };
       axios
         .post("/api/upvotes", params)
         .then((response) => {
-          this.artwork.upvote = true;
-          this.artwork.upvotes_count++;
+          artwork.upvote = true;
+          artwork.upvotes_count++;
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
           console.log(this.errors);
         });
     },
-    destroyUpvote: function() {
+    destroyUpvote: function(artwork) {
       axios
-        .delete(`/api/upvotes/${this.artwork.id}`)
+        .delete(`/api/upvotes/${artwork.id}`)
         .then((response) => {
-          this.artwork.upvote = false;
-          this.artwork.upvotes_count--;
+          console.log(response.data);
+          artwork.upvote = false;
+          artwork.upvotes_count--;
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
