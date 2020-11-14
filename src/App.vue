@@ -13,12 +13,15 @@
         <router-link :to="`/users/${getUserId()}`">My Profile</router-link>
       </div>
       <div v-if="isLoggedIn()">
+        <router-link to="/artworks/new">Create Artwork</router-link>
+      </div>
+      <div v-if="isLoggedIn()">
         <router-link to="/logout">Logout</router-link>
       </div>
       <div><router-link to="/artworks">Artworks</router-link></div>
       <div><router-link to="/colleges">Colleges</router-link></div>
     </div>
-    <router-view />
+    <router-view :key="$route.path" />
   </div>
 </template>
 
