@@ -30,6 +30,10 @@
         <input type="number" name="" v-model="artwork.year" />
       </div>
       <div>
+        <label>Image:</label>
+        <input type="text" name="" v-model="artwork.image" />
+      </div>
+      <div>
         <input type="submit" class="" value="Update" />
       </div>
       <button class="" v-on:click="destroyArtwork()">Delete</button>
@@ -44,6 +48,7 @@ export default {
   data: function() {
     return {
       artwork: {},
+      images: {},
       errors: [],
     };
   },
