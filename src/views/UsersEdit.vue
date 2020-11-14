@@ -17,7 +17,6 @@
         <label>Password:</label>
         <input type="text" class="form-control" v-model="user.password" />
       </div>
-      <!-- NEED TO FIGURE OUT HOW I CAN LEAVE PASSWORD BLANK -- RIGHT NOW IF LEFT BLANK IT THINKS IM TRYING TO CHANGE TO PASSWORD TO AN EMPTY STRING INSTEAD OF NO CHANGE -->
       <div class="form-group">
         <label>Password Confirmation:</label>
         <input
@@ -26,7 +25,7 @@
           v-model="user.password_confirmation"
         />
       </div>
-      <!-- IF ARTIST IS FALSE, THEN I NEED THE FOLLOWING USER INPUTS TO NOT BE SHOWN -->
+      <!-- IF ARTIST IS FALSE, THE FOLLOWING USER INPUTS ARE NOT SHOWN -->
       <div v-if="user.artist">
         <div class="form-group">
           <label>Style of Art:</label>
@@ -79,7 +78,6 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      image: "",
       user: {},
       errors: [],
     };
@@ -102,37 +100,38 @@ export default {
       }
     },
     updateUser: function() {
-      let params = {
-        name: this.user.name,
-        email: this.user.email,
-        password: this.user.password,
-        password_confirmation: this.user.password_confirmation,
-        // artist: this.user.artist,
-        bio: this.user.bio,
-        art_style: this.user.art_style,
-        image_url: this.user.image_url,
-        college_id: this.user.college_id,
-        major: this.user.major,
-        minor: this.user.minor,
-        graduation_year: this.user.graduation_year,
-      };
+      // let params = {
+      //   name: this.user.name,
+      //   email: this.user.email,
+      //   password: this.user.password,
+      //   password_confirmation: this.user.password_confirmation,
+      //   // artist: this.user.artist,
+      //   bio: this.user.bio,
+      //   art_style: this.user.art_style,
+      //   image_url: this.user.image_url,
+      //   college_id: this.user.college_id,
+      //   major: this.user.major,
+      //   minor: this.user.minor,
+      //   graduation_year: this.user.graduation_year,
+      // };
       let formData = new FormData();
-      // formData.append("name", this.name);
-      // formData.append("email", this.email);
-      // formData.append("password", this.password);
-      // formData.append("password_confirmation", this.passwordConfirmation);
-      // // formData.append("artist", this.artist);
-      // formData.append("art_style", this.artStyle);
-      // formData.append("college_id", this.college_id);
-      // formData.append("major", this.major);
-      // formData.append("minor", this.minor);
-      // formData.append("graduation_year", this.graduationYear);
-      // formData.append("bio", this.bio);
-      if (this.image) {
-        formData.append("image", this.image);
+      formData.append("name", this.user.name);
+      formData.append("email", this.user.email);
+      formData.append("password", this.user.password);
+      formData.append("password_confirmation", this.user.passwordConfirmation);
+      // formData.append("artist", this.artist);
+      formData.append("art_style", this.user.art_style);
+      formData.append("college_id", this.user.college_id);
+      formData.append("major", this.user.major);
+      formData.append("minor", this.user.minor);
+      formData.append("graduation_year", this.user.graduation_year);
+      formData.append("bio", this.user.bio);
+      if (this.user.image) {
+        formData.append("image_url", this.image);
+        // I HAD "this.image" AS "this.user.image" BUT SAW IN THE setFile() METHOD THAT IT SET this.image = event.target.files[0]; SO I CHANGED IT BACK TO "this.image" (AS IT IS RIGHT NOW, BUT STILL NO LUCK)
       }
       axios
-        .patch(`/api/users/${this.user.id}`, params, formData)
+        .patch(`/api/users/${this.user.id}`, formData)
         .then((response) => {
           this.$router.push(`/users/${this.user.id}`);
         })
@@ -147,7 +146,7 @@ export default {
           .delete(`/api/users/${this.user.id}`)
           .then((response) => {
             console.log("User has successfully been destroyed", response.data);
-            this.$router.push("/users");
+            this.$router.push("/logout");
           })
           .catch((error) => {
             this.errors = error.response.data.errors;
