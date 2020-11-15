@@ -47,6 +47,9 @@ import axios from "axios";
 export default {
   data: function() {
     return {
+      // height: "",
+      // width: "",
+      // length: "",
       artwork: {},
       images: {},
       errors: [],

@@ -126,9 +126,8 @@ export default {
       formData.append("minor", this.user.minor);
       formData.append("graduation_year", this.user.graduation_year);
       formData.append("bio", this.user.bio);
-      if (this.user.image) {
-        formData.append("image_url", this.image);
-        // I HAD "this.image" AS "this.user.image" BUT SAW IN THE setFile() METHOD THAT IT SET this.image = event.target.files[0]; SO I CHANGED IT BACK TO "this.image" (AS IT IS RIGHT NOW, BUT STILL NO LUCK)
+      if (this.image) {
+        formData.append("image", this.image);
       }
       axios
         .patch(`/api/users/${this.user.id}`, formData)
