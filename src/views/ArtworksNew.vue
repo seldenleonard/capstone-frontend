@@ -50,7 +50,8 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      user_id: "",
+      userId: "",
+      // IS THERE ANY REASON THAT I WOULD NEED "userId" IN MY ArtworksNew.vue, WHEN I DONT EVEN CALL IT?
       title: "",
       medium: "",
       description: "",
@@ -80,7 +81,7 @@ export default {
       axios
         .post("/api/artworks", formData)
         .then((response) => {
-          this.$router.push("/artworks");
+          this.$router.push(`/artworks/${response.data.id}`);
         })
         .catch((error) => {
           this.errors = error.response.data.errors;

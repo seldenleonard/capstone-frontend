@@ -22,7 +22,9 @@
       <div v-for="image in artwork.images">
         <img :src="image.url" alt="" />
       </div>
-      <h2>{{ artwork.title }}</h2>
+      <router-link :to="`/artworks/${artwork.id}`">
+        <h2>{{ artwork.title }}</h2>
+      </router-link>
       <p>{{ artwork.year }}</p>
       <p>{{ artwork.medium }}</p>
       <p>{{ artwork.dimensions }}</p>
@@ -36,10 +38,10 @@
       >
         <button>Edit Artwork</button>
       </router-link>
-      <button v-if="artwork.upvote" v-on:click="destroyUpvote()">
+      <button v-if="artwork.upvote" v-on:click="destroyUpvote(artwork)">
         Destroy Upvote
       </button>
-      <button v-else v-on:click="createUpvote()">Upvote</button>
+      <button v-else v-on:click="createUpvote(artwork)">Upvote</button>
     </div>
   </div>
 </template>
@@ -70,27 +72,27 @@ export default {
     relativeDate: function(date) {
       return moment(date).fromNow();
     },
-    createUpvote: function() {
+    createUpvote: function(artwork) {
       let params = {
-        artwork_id: this.artwork.id,
+        artwork_id: artwork.id,
       };
       axios
         .post("/api/upvotes", params)
         .then((response) => {
-          this.artwork.upvote = true;
-          this.artwork.upvotes_count++;
+          artwork.upvote = true;
+          artwork.upvotes_count++;
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
           console.log(this.errors);
         });
     },
-    destroyUpvote: function() {
+    destroyUpvote: function(artwork) {
       axios
-        .delete(`/api/upvotes/${this.artwork.id}`)
+        .delete(`/api/upvotes/${artwork.id}`)
         .then((response) => {
-          this.artwork.upvote = false;
-          this.artwork.upvotes_count--;
+          artwork.upvote = false;
+          artwork.upvotes_count--;
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
