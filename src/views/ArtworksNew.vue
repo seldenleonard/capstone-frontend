@@ -11,16 +11,12 @@
           <input type="text" class="form-control" v-model="title" />
         </div>
         <div class="form-group">
+          <label>Year:</label>
+          <input type="number" class="form-control" v-model="year" />
+        </div>
+        <div class="form-group">
           <label>Medium:</label>
           <input type="text" class="form-control" v-model="medium" />
-        </div>
-        <div class="form-group">
-          <label>Description:</label>
-          <input type="text" class="form-control" v-model="description" />
-        </div>
-        <div class="form-group">
-          <label>Price:</label>
-          <input type="number" class="form-control" v-model="price" />
         </div>
         <div class="form-group">
           <label>Height:</label>
@@ -31,8 +27,12 @@
           <input type="number" class="form-control" v-model="length" />
         </div>
         <div class="form-group">
-          <label>Year:</label>
-          <input type="number" class="form-control" v-model="year" />
+          <label>Description:</label>
+          <input type="text" class="form-control" v-model="description" />
+        </div>
+        <div class="form-group">
+          <label>Price:</label>
+          <input type="number" class="form-control" v-model="price" />
         </div>
         <div class="form-group">
           <label>Image URL:</label>

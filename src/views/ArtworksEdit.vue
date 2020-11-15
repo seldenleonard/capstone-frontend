@@ -10,24 +10,24 @@
         <input type="text" name="" v-model="artwork.title" />
       </div>
       <div>
+        <label>Year:</label>
+        <input type="number" name="" v-model="artwork.year" />
+      </div>
+      <div>
         <label>Medium:</label>
         <input type="text" name="" v-model="artwork.medium" />
       </div>
       <div>
+        <div>
+          <label>Dimensions:</label>
+          <input type="text" name="" v-model="artwork.dimensions" />
+        </div>
         <label>Description:</label>
         <input type="text" name="" v-model="artwork.description" />
       </div>
       <div>
         <label>Price:</label>
         <input type="number" name="" v-model="artwork.price" />
-      </div>
-      <div>
-        <label>Dimensions:</label>
-        <input type="text" name="" v-model="artwork.dimensions" />
-      </div>
-      <div>
-        <label>Year:</label>
-        <input type="number" name="" v-model="artwork.year" />
       </div>
       <div>
         <label>Image:</label>

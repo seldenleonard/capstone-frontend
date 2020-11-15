@@ -27,8 +27,8 @@
       </router-link>
       <p>{{ artwork.year }}</p>
       <p>{{ artwork.medium }}</p>
-      <p>{{ artwork.dimensions }}</p>
-      <p>{{ artwork.description }}</p>
+      <p v-if="artwork.dimensions">{{ artwork.dimensions }}</p>
+      <p v-if="artwork.description">{{ artwork.description }}</p>
       <p v-if="artwork.price">Price: $ {{ artwork.price }}</p>
       <p>Upvotes: {{ artwork.upvotes_count }}</p>
       <h5 class="category">Posted {{ relativeDate(artwork.created_at) }}</h5>
