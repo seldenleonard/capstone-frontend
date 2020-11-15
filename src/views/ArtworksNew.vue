@@ -19,12 +19,12 @@
           <input type="text" class="form-control" v-model="medium" />
         </div>
         <div class="form-group">
-          <label>Height:</label>
-          <input type="number" class="form-control" v-model="height" />
+          <label>length:</label>
+          <input type="number" class="form-control" v-model="length" />
           <label>Width:</label>
           <input type="number" class="form-control" v-model="width" />
-          <label>Length:</label>
-          <input type="number" class="form-control" v-model="length" />
+          <label>height:</label>
+          <input type="number" class="form-control" v-model="height" />
         </div>
         <div class="form-group">
           <label>Description:</label>
@@ -59,9 +59,9 @@ export default {
       dimensions: "",
       year: "",
       imageUrl: "",
-      height: "",
-      width: "",
       length: "",
+      width: "",
+      height: "",
       errors: [],
     };
   },
@@ -72,12 +72,25 @@ export default {
       formData.append("medium", this.medium);
       formData.append("description", this.description);
       formData.append("price", this.price);
-      formData.append(
-        "dimensions",
-        `${this.height}" x ${this.width}" x ${this.length}"`
-      );
       formData.append("year", this.year);
       formData.append("image_url", this.imageUrl);
+      if (this.length && this.width && this.height) {
+        formData.append(
+          "dimensions",
+          `${this.length}" x ${this.width}" x ${this.height}"`
+        );
+      } else if (this.length && this.width) {
+        formData.append("dimensions", `${this.length}" x ${this.width}"`);
+      } else if (this.length && this.height) {
+        formData.append("dimensions", `${this.length}" x ${this.height}"`);
+      } else if (this.height && this.width) {
+        formData.append("dimensions", `${this.height}" x ${this.width}"`);
+      } else if (this.length || this.height || this.width) {
+        formData.append(
+          "dimensions",
+          `${this.length || this.height || this.width}"`
+        );
+      }
       axios
         .post("/api/artworks", formData)
         .then((response) => {
