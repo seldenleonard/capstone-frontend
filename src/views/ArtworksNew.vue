@@ -8,35 +8,81 @@
         </ul>
         <div class="form-group">
           <label>Title:</label>
-          <input type="text" class="form-control" v-model="title" />
+          <input
+            type="text"
+            class="form-control"
+            v-model="title"
+            placeholder="The Starry Night"
+          />
         </div>
         <div class="form-group">
           <label>Year:</label>
-          <input type="number" class="form-control" v-model="year" />
+          <input
+            type="number"
+            class="form-control"
+            v-model="year"
+            placeholder="1889"
+          />
         </div>
         <div class="form-group">
           <label>Medium:</label>
-          <input type="text" class="form-control" v-model="medium" />
+          <input
+            type="text"
+            class="form-control"
+            v-model="medium"
+            placeholder="Oil on Canvas"
+          />
         </div>
         <div class="form-group">
-          <label>length:</label>
-          <input type="number" class="form-control" v-model="length" />
+          <label>Length:</label>
+          <input
+            type="number"
+            class="form-control"
+            v-model="length"
+            placeholder="29"
+          />
           <label>Width:</label>
-          <input type="number" class="form-control" v-model="width" />
-          <label>height:</label>
-          <input type="number" class="form-control" v-model="height" />
+          <input
+            type="number"
+            class="form-control"
+            v-model="width"
+            placeholder="36"
+          />
+          <label>Height:</label>
+          <input
+            type="number"
+            class="form-control"
+            v-model="height"
+            placeholder="For 3-Dimensional Artworks"
+          />
         </div>
         <div class="form-group">
           <label>Description:</label>
-          <input type="text" class="form-control" v-model="description" />
+          <input
+            type="text"
+            class="form-control"
+            v-model="description"
+            placeholder="The view from the east-facing window of my asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an imaginary village."
+          />
         </div>
         <div class="form-group">
           <label>Price:</label>
-          <input type="number" class="form-control" v-model="price" />
+          <input
+            type="number"
+            class="form-control"
+            v-model="price"
+            placeholder="273000000"
+          />
+          <!-- consider making this placeholder like 10 dollars or something more similar to what people might actually input as opposed to this massive actual value of The Starry Night -->
         </div>
         <div class="form-group">
-          <label>Image URL:</label>
-          <input type="text" class="form-control" v-model="imageUrl" />
+          <label>Image:</label>
+          <input
+            type="file"
+            class="form-control"
+            v-on:change="setFile($event)"
+            ref="fileInput"
+          />
         </div>
         <input type="submit" class="button" value="Submit" />
       </form>
@@ -58,7 +104,7 @@ export default {
       price: "",
       dimensions: "",
       year: "",
-      imageUrl: "",
+      image: "",
       length: "",
       width: "",
       height: "",
@@ -66,6 +112,11 @@ export default {
     };
   },
   methods: {
+    setFile: function(event) {
+      if (event.target.files.length > 0) {
+        this.image = event.target.files[0];
+      }
+    },
     createArtwork: function() {
       let formData = new FormData();
       formData.append("title", this.title);
@@ -73,7 +124,9 @@ export default {
       formData.append("description", this.description);
       formData.append("price", this.price);
       formData.append("year", this.year);
-      formData.append("image_url", this.imageUrl);
+      if (this.image) {
+        formData.append("image", this.image);
+      }
       if (this.length && this.width && this.height) {
         formData.append(
           "dimensions",
