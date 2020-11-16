@@ -17,7 +17,13 @@
         <label>Medium:</label>
         <input type="text" name="" v-model="artwork.medium" />
       </div>
-
+      <!-- <div>
+        <label>Dimensions:</label>
+        <p>{{ artwork.dimensions }}</p>
+        <input type="checkbox" id="checkbox" class="form-control" />
+        <label for="checkbox">Edit</label>
+      </div> -->
+      <!-- THIS IS AN ATTEMPT TO SHOW DIMENSIONS AND THEN HAVE AN EDIT CHECKBOX THAT WILL THEN DISPLAY THE L, W, AND H IF CHECKED (IN ORDER TO AVOID THE DIFFICULTY OF ATTEMPTING TO POPULATE THE L, W, AND H BOXES BECAUSE THEY AR ENOT ATRIBUTES OF THE MODEL) -->
       <div>
         <label>Length:</label>
         <input type="text" name="" v-model="length" />
@@ -46,6 +52,7 @@
           ref="fileInput"
         />
         <!-- v-model="artwork.image" -->
+        <!-- <button class="" v-on:click="destroyImage()">Delete</button> -->
       </div>
       <div>
         <input type="submit" class="" value="Update" />
@@ -118,6 +125,16 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
+    // destroyImage: function() {
+    //   axios
+    //     .delete(`/api/images/${this.image.id}`)
+    //     .then((response) => {
+    //       console.log("Image has successfully been destroyed", response.data);
+    //     })
+    //     .catch((error) => {
+    //       this.errors = error.response.data.errors;
+    //     });
+    // },
     destroyArtwork: function() {
       if (confirm("Are you sure you would like to delete this artwork?")) {
         axios
