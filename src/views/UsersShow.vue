@@ -38,10 +38,10 @@
       >
         <button>Edit Artwork</button>
       </router-link>
-      <button v-if="artwork.upvote" v-on:click="destroyUpvote(artwork)">
+      <!-- <button v-if="artwork.upvote" v-on:click="destroyUpvote(artwork)">
         Destroy Upvote
       </button>
-      <button v-else v-on:click="createUpvote(artwork)">Upvote</button>
+      <button v-else v-on:click="createUpvote(artwork)">Upvote</button> -->
     </div>
   </div>
 </template>
@@ -72,32 +72,32 @@ export default {
     relativeDate: function(date) {
       return moment(date).fromNow();
     },
-    createUpvote: function(artwork) {
-      let params = {
-        artwork_id: artwork.id,
-      };
-      axios
-        .post("/api/upvotes", params)
-        .then((response) => {
-          artwork.upvote = true;
-          artwork.upvotes_count++;
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-          console.log(this.errors);
-        });
-    },
-    destroyUpvote: function(artwork) {
-      axios
-        .delete(`/api/upvotes/${artwork.id}`)
-        .then((response) => {
-          artwork.upvote = false;
-          artwork.upvotes_count--;
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
-    },
+    // createUpvote: function(artwork) {
+    //   let params = {
+    //     artwork_id: artwork.id,
+    //   };
+    //   axios
+    //     .post("/api/upvotes", params)
+    //     .then((response) => {
+    //       artwork.upvote = true;
+    //       artwork.upvotes_count++;
+    //     })
+    //     .catch((error) => {
+    //       this.errors = error.response.data.errors;
+    //       console.log(this.errors);
+    //     });
+    // },
+    // destroyUpvote: function(artwork) {
+    //   axios
+    //     .delete(`/api/upvotes/${artwork.id}`)
+    //     .then((response) => {
+    //       artwork.upvote = false;
+    //       artwork.upvotes_count--;
+    //     })
+    //     .catch((error) => {
+    //       this.errors = error.response.data.errors;
+    //     });
+    // },
   },
 };
 </script>
