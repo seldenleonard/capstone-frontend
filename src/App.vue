@@ -20,6 +20,9 @@
       </div>
       <div><router-link to="/artworks">Artworks</router-link></div>
       <div><router-link to="/colleges">Colleges</router-link></div>
+      <!-- <div>
+        <button @click="openUploadModal">Upload files</button>
+      </div> -->
     </div>
     <router-view :key="$route.path" />
   </div>
@@ -46,14 +49,39 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+img {
+  width: 250px;
+}
 </style>
 
 <script>
+import HelloWorld from "./components/HelloWorld.vue";
+
 export default {
-  data: function() {
-    return {};
-  },
+  // name: "App", // MAYBE I SHOULD UNCAPITALIZE THE "A" SO IT MATCHES MY DIV ID
+  // components: {},
+  // data: function() {
+  //   return {
+  //     url: "",
+  //   };
+  // },
   methods: {
+    // openUploadModal() {
+    //   window.cloudinary
+    //     .openUploadWidget(
+    //       {
+    //         cloud_name: "xxxcloudxxx",
+    //         upload_preset: "lryaylj0",
+    //       },
+    //       (error, result) => {
+    //         if (!error && result && result.event === "success") {
+    //           console.log("Done uploading..: ", result.info);
+    //           this.url = result.info.url;
+    //         }
+    //       }
+    //     )
+    //     .open();
+    // },
     isLoggedIn: function() {
       return localStorage.getItem("jwt");
     },
