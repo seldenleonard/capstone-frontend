@@ -17,11 +17,19 @@
         <label>Medium:</label>
         <input type="text" name="" v-model="artwork.medium" />
       </div>
+
       <div>
-        <div>
-          <label>Dimensions:</label>
-          <input type="text" name="" v-model="artwork.dimensions" />
-        </div>
+        <label>Length:</label>
+        <input type="text" name="" v-model="length" />
+
+        <label>Width:</label>
+        <input type="text" name="" v-model="width" />
+
+        <label>Height:</label>
+        <input type="text" name="" v-model="height" />
+      </div>
+
+      <div>
         <label>Description:</label>
         <input type="text" name="" v-model="artwork.description" />
       </div>
@@ -31,7 +39,13 @@
       </div>
       <div>
         <label>Image:</label>
-        <input type="text" name="" v-model="artwork.image" />
+        <input
+          type="file"
+          class="form-control"
+          v-on:change="setFile($event)"
+          ref="fileInput"
+        />
+        <!-- v-model="artwork.image" -->
       </div>
       <div>
         <input type="submit" class="" value="Update" />
@@ -47,9 +61,10 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      // height: "",
-      // width: "",
-      // length: "",
+      dimensions: "",
+      length: "",
+      width: "",
+      height: "",
       artwork: {},
       images: {},
       errors: [],
@@ -62,17 +77,40 @@ export default {
     });
   },
   methods: {
+    setFile: function(event) {
+      if (event.target.files.length > 0) {
+        this.image = event.target.files[0];
+      }
+    },
     updateArtwork: function() {
-      let params = {
-        title: this.artwork.title,
-        medium: this.artwork.medium,
-        description: this.artwork.description,
-        price: this.artwork.price,
-        dimensions: this.artwork.dimensions,
-        year: this.artwork.year,
-      };
+      let formData = new FormData();
+      formData.append("title", this.artwork.title);
+      formData.append("medium", this.artwork.medium);
+      formData.append("description", this.artwork.description);
+      formData.append("price", this.artwork.price);
+      formData.append("year", this.artwork.year);
+      if (this.image) {
+        formData.append("image", this.image);
+      }
+      if (this.length && this.width && this.height) {
+        formData.append(
+          "dimensions",
+          `${this.length}" x ${this.width}" x ${this.height}"`
+        );
+      } else if (this.length && this.width) {
+        formData.append("dimensions", `${this.length}" x ${this.width}"`);
+      } else if (this.length && this.height) {
+        formData.append("dimensions", `${this.length}" x ${this.height}"`);
+      } else if (this.height && this.width) {
+        formData.append("dimensions", `${this.height}" x ${this.width}"`);
+      } else if (this.length || this.height || this.width) {
+        formData.append(
+          "dimensions",
+          `${this.length || this.height || this.width}"`
+        );
+      }
       axios
-        .patch(`/api/artworks/${this.artwork.id}`, params)
+        .patch(`/api/artworks/${this.artwork.id}`, formData)
         .then((response) => {
           this.$router.push(`/artworks/${this.artwork.id}`);
         })
@@ -96,6 +134,13 @@ export default {
           });
       }
     },
+    // WILL LIKELY NEED TO MAKE A destroyImage METHOD TOO -- WHICH I CAN HAVE A BUTTON CALLING THE METHOD INSIDE THE LOOP THAT CREATES MORE IMAGE UPLOAD FIELDS
   },
 };
 </script>
+
+// NOTE TO SELF ABOUT DIMENSIONS AS (L x W x H) IN THREE SEPEARATE INPUTS AND
+WITH LOGIC TO MAKE THEM FIT TOGETHER NO MATTER WHAT BOXES ARE FILLED IN: I
+STOPPED IMPLEMENTING IT PREMATURELY BECAUSE ADDING CLOUDINARY WOULD CHANGE IT NO
+MATTER WHAT. SO FAR I HAVE ENTERED IN THE INPUT BOXES AND THE DATA VALUES SO ALL
+I NEED TO DO LEFT IS ADD IN THE formData.append() if statements and logic etc.
