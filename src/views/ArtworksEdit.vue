@@ -51,6 +51,8 @@
           v-on:change="setFile($event)"
           ref="fileInput"
         />
+        <!-- <button @click="$parent.openUploadModal">Upload files</button> -->
+
         <!-- v-model="artwork.image" -->
         <!-- <button class="" v-on:click="destroyImage()">Delete</button> -->
       </div>
@@ -72,6 +74,7 @@ export default {
       length: "",
       width: "",
       height: "",
+      // url: "",
       artwork: {},
       images: {},
       errors: [],
@@ -99,6 +102,9 @@ export default {
       if (this.image) {
         formData.append("image", this.image);
       }
+      // if (this.url) {
+      //   formData.append("image", this.url);
+      // }
       if (this.length && this.width && this.height) {
         formData.append(
           "dimensions",
