@@ -66,7 +66,7 @@
           />
         </div>
         <div class="form-group">
-          <label>Price:</label>
+          <label>Price: $</label>
           <input
             type="number"
             class="form-control"
@@ -84,6 +84,25 @@
             ref="fileInput"
           />
         </div>
+        <div v-if="image1" class="form-group">
+          <label>Image:</label>
+          <input
+            type="file"
+            class="form-control"
+            v-on:change="setFile($event)"
+            ref="fileInput"
+          />
+        </div>
+        <div v-if="image2" class="form-group">
+          <label>Image:</label>
+          <input
+            type="file"
+            class="form-control"
+            v-on:change="setFile($event)"
+            ref="fileInput"
+          />
+        </div>
+        <!-- Image 1: {{ image1 }} Image 2: {{ image2 }} Image 3: {{ image3 }} -->
         <input type="submit" class="button" value="Submit" />
       </form>
     </div>
@@ -104,7 +123,9 @@ export default {
       price: "",
       dimensions: "",
       year: "",
-      image: "",
+      image1: "",
+      image2: "",
+      image3: "",
       length: "",
       width: "",
       height: "",
@@ -114,7 +135,13 @@ export default {
   methods: {
     setFile: function(event) {
       if (event.target.files.length > 0) {
-        this.image = event.target.files[0];
+        if (this.image2) {
+          this.image3 = event.target.files[0];
+        } else if (this.image1) {
+          this.image2 = event.target.files[0];
+        } else {
+          this.image1 = event.target.files[0];
+        }
       }
     },
     createArtwork: function() {
@@ -124,8 +151,14 @@ export default {
       formData.append("description", this.description);
       formData.append("price", this.price);
       formData.append("year", this.year);
-      if (this.image) {
-        formData.append("image", this.image);
+      if (this.image1) {
+        formData.append("image1", this.image1);
+      }
+      if (this.image2) {
+        formData.append("image2", this.image2);
+      }
+      if (this.image3) {
+        formData.append("image3", this.image3);
       }
       if (this.length && this.width && this.height) {
         formData.append(

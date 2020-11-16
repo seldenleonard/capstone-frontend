@@ -17,50 +17,58 @@
         <label>Medium:</label>
         <input type="text" name="" v-model="artwork.medium" />
       </div>
-      <!-- <div>
+      <div>
         <label>Dimensions:</label>
         <p>{{ artwork.dimensions }}</p>
-        <input type="checkbox" id="checkbox" class="form-control" />
+        <input
+          type="checkbox"
+          id="checkbox"
+          class="form-control"
+          v-model="dimensions"
+        />
         <label for="checkbox">Edit</label>
-      </div> -->
-      <!-- THIS IS AN ATTEMPT TO SHOW DIMENSIONS AND THEN HAVE AN EDIT CHECKBOX THAT WILL THEN DISPLAY THE L, W, AND H IF CHECKED (IN ORDER TO AVOID THE DIFFICULTY OF ATTEMPTING TO POPULATE THE L, W, AND H BOXES BECAUSE THEY AR ENOT ATRIBUTES OF THE MODEL) -->
-      <div>
-        <label>Length:</label>
-        <input type="text" name="" v-model="length" />
 
-        <label>Width:</label>
-        <input type="text" name="" v-model="width" />
+        <!-- THIS IS AN ATTEMPT TO SHOW DIMENSIONS AND THEN HAVE AN EDIT CHECKBOX THAT WILL THEN DISPLAY THE L, W, AND H IF CHECKED (IN ORDER TO AVOID THE DIFFICULTY OF ATTEMPTING TO POPULATE THE L, W, AND H BOXES BECAUSE THEY AR ENOT ATRIBUTES OF THE MODEL) -->
+        <div v-if="dimensions">
+          <label>Length:</label>
+          <input type="text" name="" v-model="length" />
 
-        <label>Height:</label>
-        <input type="text" name="" v-model="height" />
+          <label>Width:</label>
+          <input type="text" name="" v-model="width" />
+
+          <label>Height:</label>
+          <input type="text" name="" v-model="height" />
+        </div>
       </div>
-
       <div>
         <label>Description:</label>
         <input type="text" name="" v-model="artwork.description" />
       </div>
       <div>
-        <label>Price:</label>
+        <label>Price: $</label>
         <input type="number" name="" v-model="artwork.price" />
       </div>
-      <div>
-        <label>Image:</label>
-        <input
-          type="file"
-          class="form-control"
-          v-on:change="setFile($event)"
-          ref="fileInput"
-        />
-        <!-- <button @click="$parent.openUploadModal">Upload files</button> -->
 
-        <!-- v-model="artwork.image" -->
-        <!-- <button class="" v-on:click="destroyImage()">Delete</button> -->
-      </div>
       <div>
         <input type="submit" class="" value="Update" />
       </div>
       <button class="" v-on:click="destroyArtwork()">Delete</button>
     </form>
+
+    <div class="form-group">
+      <label>New Image:</label>
+      <input
+        type="file"
+        class="form-control"
+        v-on:change="setFile($event)"
+        ref="fileInput"
+      />
+    </div>
+    <button v-on:click="createImage()">Add Image</button>
+    <div v-for="image in artwork.images">
+      <img :src="image.url" alt="" />
+      <button v-on:click="destroyImage(image)">Delete</button>
+    </div>
   </div>
 </template>
 
@@ -76,8 +84,8 @@ export default {
       height: "",
       // url: "",
       artwork: {},
-      images: {},
       errors: [],
+      image: "",
     };
   },
   created: function() {
@@ -99,12 +107,6 @@ export default {
       formData.append("description", this.artwork.description);
       formData.append("price", this.artwork.price);
       formData.append("year", this.artwork.year);
-      if (this.image) {
-        formData.append("image", this.image);
-      }
-      // if (this.url) {
-      //   formData.append("image", this.url);
-      // }
       if (this.length && this.width && this.height) {
         formData.append(
           "dimensions",
@@ -131,16 +133,33 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
-    // destroyImage: function() {
-    //   axios
-    //     .delete(`/api/images/${this.image.id}`)
-    //     .then((response) => {
-    //       console.log("Image has successfully been destroyed", response.data);
-    //     })
-    //     .catch((error) => {
-    //       this.errors = error.response.data.errors;
-    //     });
-    // },
+    createImage: function() {
+      let formData = new FormData();
+      formData.append("artwork_id", this.artwork.id);
+      if (this.image) {
+        formData.append("image", this.image);
+      }
+      axios
+        .post("/api/images", formData)
+        .then((response) => {
+          console.log(response.data);
+          this.artwork.images.push(response.data);
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
+    destroyImage: function(image) {
+      axios
+        .delete(`/api/images/${image.id}`)
+        .then((response) => {
+          console.log("Image has successfully been destroyed", response.data);
+          this.artwork.images.splice(this.artwork.images.indexOf(image), 1);
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
     destroyArtwork: function() {
       if (confirm("Are you sure you would like to delete this artwork?")) {
         axios
@@ -157,7 +176,6 @@ export default {
           });
       }
     },
-    // WILL LIKELY NEED TO MAKE A destroyImage METHOD TOO -- WHICH I CAN HAVE A BUTTON CALLING THE METHOD INSIDE THE LOOP THAT CREATES MORE IMAGE UPLOAD FIELDS
   },
 };
 </script>
