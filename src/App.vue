@@ -2,7 +2,7 @@
   <div id="app">
     <!-- NAVIGATION -->
     <nav
-      class="navbar navbar-custom navbar-black navbar-fixed-top"
+      class="navbar navbar-custom navbar-transparent navbar-fixed-top"
       role="navigation"
     >
       <!-- Note: the navbar was originally "transparent" instead of black but i changed it cause I couldnt see it, but change it back when I put more of the theme in -->
@@ -19,19 +19,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <h1>
-            <router-link to="/colleges" class="navbar-brand">Art U</router-link>
-          </h1>
+          <router-link class="navbar-brand" to="/">Art U</router-link>
+
+          <!-- <router-link to="/colleges" class="navbar-brand">Art U</router-link> -->
         </div>
         <div class="collapse navbar-collapse" id="custom-collapse">
           <!-- Router Links in Nav Bar -->
           <ul class="nav navbar-nav navbar-right">
-            <li>
-              <router-link to="/">Home</router-link>
-            </li>
-            <li>
-              <router-link to="/about">About</router-link>
-            </li>
             <li v-if="!isLoggedIn()">
               <router-link to="/signup">Signup</router-link>
             </li>
@@ -55,55 +49,6 @@
             <li>
               <router-link to="/colleges">Colleges</router-link>
             </li>
-
-            <!-- Below is the "Features dropdown menu from the original theme, I am keeping it so I can use the dropdown for my own purposes" -->
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                >Features</a
-              >
-              <ul class="dropdown-menu" role="menu">
-                <li>
-                  <a href="comp-alerts-wells.html"
-                    ><i class="fa fa-bolt"></i> Alerts and Wells</a
-                  >
-                </li>
-                <li>
-                  <a href="comp-buttons.html"
-                    ><i class="fa fa-link fa-sm"></i> Buttons</a
-                  >
-                </li>
-                <li>
-                  <a href="comp-collapses-tabs.html"
-                    ><i class="fa fa-tasks"></i> Collapses &amp; Tabs</a
-                  >
-                </li>
-                <li>
-                  <a href="comp-content-box.html"
-                    ><i class="fa fa-list-alt"></i> Contents Box</a
-                  >
-                </li>
-                <li>
-                  <a href="comp-forms.html"
-                    ><i class="fa fa-check-square-o"></i> Forms</a
-                  >
-                </li>
-                <li>
-                  <a href="comp-icons.html"><i class="fa fa-star"></i> Icons</a>
-                </li>
-                <li>
-                  <a href="comp-progress-bars.html"
-                    ><i class="fa fa-server"></i> Progress Bars</a
-                  >
-                </li>
-                <li>
-                  <a href="comp-typography.html"
-                    ><i class="fa fa-font"></i> Typography</a
-                  >
-                </li>
-              </ul>
-            </li>
-
-            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -117,27 +62,71 @@
       </div> -->
     <!-- </div> -->
 
-    <router-view :key="$route.path" />
+    <!-- WRAPPER -->
+    <div class="wrapper">
+      <router-view :key="$route.path" />
+      <!-- CONTACT -->
+      <section class="module-small">
+        <div class="container">
+          <div class="row">
+            <!-- CONTENT BOX -->
+            <div class="col-sm-4">
+              <div class="content-box">
+                <div class="content-box-icon">
+                  <span class="icon-map-pin"></span>
+                </div>
+                <div class="content-box-title font-inc">
+                  007 Steet, City, USA
+                </div>
+              </div>
+            </div>
+            <!-- /CONTENT BOX -->
 
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12 text-center">
-            <p class="copyright font-inc m-b-0">
-              © 2020 <router-link to="/colleges">Art U</router-link>
-              <!-- © 2015 <a href="index.html">SEMANTIC</a>, All Rights Reserved. -->
-            </p>
+            <!-- CONTENT BOX -->
+            <div class="col-sm-4">
+              <div class="content-box">
+                <div class="content-box-icon">
+                  <span class="icon-phone"></span>
+                </div>
+                <div class="content-box-title font-inc">
+                  +1 234 567 89 00
+                </div>
+              </div>
+            </div>
+            <!-- /CONTENT BOX -->
+
+            <!-- CONTENT BOX -->
+            <div class="col-sm-4">
+              <div class="content-box">
+                <div class="content-box-icon">
+                  <span class="icon-envelope"></span>
+                </div>
+                <div class="content-box-title font-inc">
+                  semantic@email.com
+                </div>
+              </div>
+            </div>
+            <!-- /CONTENT BOX -->
           </div>
         </div>
-      </div>
-    </footer>
-    <!-- /FOOTER -->
-
-    <!-- Scroll-up -->
-    <div class="scroll-up">
-      <a href="#totop"><i class="fa fa-angle-double-up"></i></a>
+      </section>
+      <!-- /CONTACT -->
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <p class="copyright font-inc m-b-0">
+                © 2020 <router-link to="/colleges">Art U</router-link>
+                <!-- © 2015 <a href="index.html">SEMANTIC</a>, All Rights Reserved. -->
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- /FOOTER -->
     </div>
+    <!-- /WRAPPER -->
   </div>
 </template>
 
@@ -147,11 +136,12 @@ import HelloWorld from "./components/HelloWorld.vue";
 export default {
   // name: "App", // MAYBE I SHOULD UNCAPITALIZE THE "A" SO IT MATCHES MY DIV ID
   // components: {},
-  // data: function() {
-  //   return {
-  //     url: "",
-  //   };
-  // },
+  data: function() {
+    return {
+      // url: "",
+      headerImagePath: "",
+    };
+  },
   methods: {
     // openUploadModal() {
     //   window.cloudinary

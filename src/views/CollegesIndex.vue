@@ -1,274 +1,107 @@
 <template>
   <div class="colleges-index">
-    <!-- HOME -->
+    <!-- HEADER -->
     <section
-      id="home"
-      class="module-hero module-parallax module-fade module-full-height"
+      class="module module-header bg-dark bg-dark-50"
+      data-background="/assets/images/section-7.jpg"
+      style="background-image: url(/assets/images/section-7.jpg);"
     >
-      <div class="hero-slider">
-        <ul class="slides">
-          <!-- SLIDE -->
-          <li class="bg-dark">
-            <div
-              class="slidebg slide-zoom bg-dark-30"
-              style="background-image:url(assets/images/section-2.jpg)"
-            ></div>
+      <div class="container">
+        <!-- MODULE TITLE -->
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-2">
+            <h1 class="module-title font-alt align-center">Post title</h1>
 
-            <div class="hs-caption container">
-              <div class="caption-content">
-                <div class="hs-title-size-3 font-alt m-b-20">
-                  We are Semantic
-                </div>
-                <div class="hs-title-size-1 font-inc">
-                  A wonderful serenity has taken possession of my entire soul,
-                  like these<br />
-                  sweet mornings of spring which I enjoy with my whole heart
-                </div>
+            <div class="module-subtitle font-inc align-center">
+              <div class="post-meta font-inc">
+                By <a href="#">Thomas Anderson</a> | 31 DEC 2014 | 3 Comments |
+                <a href="#">Photography</a>, <a href="#">Web Design</a>
               </div>
             </div>
-          </li>
-          <!-- /SLIDE -->
-
-          <!-- SLIDE -->
-          <li class="bg-light">
-            <div
-              class="slidebg slide-zoom bg-light-30"
-              style="background-image:url(assets/images/section-9.jpg)"
-            ></div>
-
-            <div class="hs-caption container">
-              <div class="caption-content left">
-                <div class="hs-title-size-3 font-alt m-b-20">
-                  Incoming call
-                </div>
-                <div class="hs-title-size-1 font-inc">
-                  A wonderful serenity has taken possession of my entire soul,
-                  like these<br />
-                  sweet mornings of spring which I enjoy with my whole heart
-                </div>
-              </div>
-            </div>
-          </li>
-          <!-- /SLIDE -->
-
-          <!-- SLIDE -->
-          <li class="bg-dark">
-            <div
-              class="slidebg slide-zoom bg-dark-50"
-              style="background-image:url(assets/images/section-8.jpg)"
-            ></div>
-
-            <div class="hs-caption container">
-              <div class="caption-content right">
-                <div class="hs-title-size-3 font-alt m-b-20">
-                  Yellow coat
-                </div>
-                <div class="hs-title-size-1 font-inc">
-                  A wonderful serenity has taken possession of my entire soul,
-                  like these<br />
-                  sweet mornings of spring which I enjoy with my whole heart
-                </div>
-              </div>
-            </div>
-          </li>
-          <!-- /SLIDE -->
-        </ul>
+          </div>
+        </div>
+        <!-- /MODULE TITLE -->
       </div>
     </section>
-    <!-- /HOME -->
-
-    <!-- WRAPPER -->
-    <div class="wrapper">
-      <!-- PORTFOLIO -->
-      <section class="module-small p-t-20 p-b-0 p-t-sm-0">
-        <div class="container hidden-xs">
-          <!-- PORTFOLIO FILTER -->
-          <div class="row">
-            <div class="col-sm-12">
-              <ul id="filters" class="filter font-inc">
-                <li>
-                  <a href="#" data-filter="*" class="current wow fadeInUp"
-                    >All</a
-                  >
+    <!-- /HEADER -->
+    <!-- PORTFOLIO DESCRIPTION -->
+    <section class="module-small">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="work-details">
+              <h3 class="work-details-title font-alt">Description</h3>
+              <ul>
+                <li class="font-inc"><strong>Client: </strong>SomeCompany</li>
+                <li class="font-inc">
+                  <strong>Date: </strong>23 November, 2015
                 </li>
-                <li>
-                  <a
-                    href="#"
-                    data-filter=".webdesign"
-                    class="wow fadeInUp"
-                    data-wow-delay="0.6s"
-                    >Web Design</a
-                  >
+                <li class="font-inc">
+                  <strong>Online: </strong
+                  ><a href="#" target="_blank">www.example.com</a>
                 </li>
               </ul>
             </div>
           </div>
-          <!-- /PORTFOLIO FILTER -->
-        </div>
 
-        <!-- PORTFOLIO LIST -->
-        <ul
-          id="works-grid"
-          class="works-grid works-grid-masonry works-grid-3 works-hover-w"
-        >
-          <!-- PORTFOLIO ITEM -->
-          <li class="work-item illustration webdesign">
-            <a href="portfolio-single-1.html">
-              <div class="work-image">
-                <img src="assets/images/work-masonry-1.jpg" alt="" />
-              </div>
-              <div class="work-caption">
-                <h3 class="work-title font-alt">Corporate Identity</h3>
-                <div class="work-descr font-inc">
-                  Illustration
-                </div>
-              </div>
-            </a>
-          </li>
-          <!-- /PORTFOLIO ITEM -->
-        </ul>
-        <!-- /PORTFOLIO LIST -->
-      </section>
-      <!-- /PORTFOLIO -->
-
-      <!-- TESTIMONIAL -->
-      <section class="module-small">
-        <div class="container">
-          <div class="row">
-            <!-- MODULE TITLE -->
-            <div class="col-sm-6">
-              <h2 class="module-title font-alt">Someone quote</h2>
-            </div>
-            <!-- /MODULE TITLE -->
-
-            <!-- BLOCKQUOTE -->
-            <div class="col-sm-6">
-              <blockquote class="font-serif align-right">
-                <p>
-                  The languages only differ in their grammar, their
-                  pronunciation and their most common words. Everyone realizes
-                  why a new common language would be desirable: one could refuse
-                  to pay expensive translators.
-                </p>
-                <p class="font-inc font-uppercase">- Thomas Anderson</p>
-              </blockquote>
-            </div>
-            <!-- /BLOCKQUOTE -->
+          <div class="col-sm-6">
+            <p>
+              The languages only differ in their grammar, their pronunciation
+              and their most common words. Everyone realizes why a new common
+              language would be desirable: one could refuse to pay expensive
+              translators.
+            </p>
+            <p>
+              The languages only differ in their grammar, their pronunciation
+              and their most common words. Everyone realizes why a new common
+              language would be desirable: one could refuse to pay expensive
+              translators.
+            </p>
           </div>
         </div>
-      </section>
-      <!-- /TESTIMONIAL -->
+      </div>
+    </section>
 
-      <!-- ABOUT -->
-      <section
-        class="module p-t-0 p-b-0"
-        data-background="assets/images/section-4.jpg"
+    <!-- /PORTFOLIO DESCRIPTION -->
+
+    <!-- PORTFOLIO CONTENT -->
+    <section class="module p-t-0 p-b-0">
+      <!-- PORTFOLIO LIST -->
+      <ul
+        id="works-grid"
+        class="works-grid works-grid-masonry works-grid-2 works-hover-w"
       >
-        <div class="container-fluid">
-          <div class="row relative">
-            <div class="col-sm-12 col-md-6 col-md-offset-6 col-bg">
-              <h2 class="module-title font-alt">About</h2>
-
-              <div class="module-subtitle font-inc">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor. Aenean massa.
-              </div>
-
-              <p>
-                The languages only differ in their grammar, their pronunciation
-                and their most common words. Everyone realizes why a new common
-                language would be desirable: one could refuse to pay expensive
-                translators.
-              </p>
-
-              <p>
-                To achieve this, it would be necessary to have uniform grammar,
-                pronunciation and more common words. If several languages
-                coalesce, the grammar of the resulting language is more simple
-                and regular than that of the individual languages.
-              </p>
-
-              <ul class="social-list">
-                <li>
-                  <a href="#"><span class="icon-facebook"></span></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon-twitter"></span></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon-googleplus"></span></a>
-                </li>
-              </ul>
+        <!-- PORTFOLIO ITEM -->
+        <li
+          class="work-item"
+          v-for="college in orderBy(
+            filterBy(
+              colleges,
+              allAttributeFilter,
+              'name',
+              'abbreviation',
+              'city',
+              'state',
+              'dimensions'
+            ),
+            sortAttribute
+          )"
+        >
+          <a href="assets/images/work-1.jpg" class="popup" title="Work 1">
+            <div class="work-image">
+              <img :src="college.image_url" alt="" />
             </div>
-          </div>
-        </div>
-      </section>
-      <!-- /ABOUT -->
-
-      <!-- CONTACT -->
-      <section class="module-small">
-        <div class="container">
-          <div class="row">
-            <!-- CONTENT BOX -->
-            <div class="col-sm-4">
-              <div class="content-box">
-                <div class="content-box-icon">
-                  <span class="icon-map-pin"></span>
-                </div>
-                <div class="content-box-title font-inc">
-                  007 Steet, City, USA
-                </div>
-              </div>
+            <div class="work-caption">
+              <h3 class="work-title font-alt">
+                <span class="icon-magnifying-glass"></span>
+              </h3>
             </div>
-            <!-- /CONTENT BOX -->
-
-            <!-- CONTENT BOX -->
-            <div class="col-sm-4">
-              <div class="content-box">
-                <div class="content-box-icon">
-                  <span class="icon-phone"></span>
-                </div>
-                <div class="content-box-title font-inc">
-                  +1 234 567 89 00
-                </div>
-              </div>
-            </div>
-            <!-- /CONTENT BOX -->
-
-            <!-- CONTENT BOX -->
-            <div class="col-sm-4">
-              <div class="content-box">
-                <div class="content-box-icon">
-                  <span class="icon-envelope"></span>
-                </div>
-                <div class="content-box-title font-inc">
-                  semantic@email.com
-                </div>
-              </div>
-            </div>
-            <!-- /CONTENT BOX -->
-          </div>
-        </div>
-      </section>
-      <!-- /CONTACT -->
-
-      <!-- FOOTER -->
-      <footer class="footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12 text-center">
-              <p class="copyright font-inc m-b-0">
-                © 2015 <a href="index.html">SEMANTIC</a>, All Rights Reserved.
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <!-- /FOOTER -->
-    </div>
-    <!-- /WRAPPER -->
-
-    <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+          </a>
+        </li>
+        <!-- /PORTFOLIO ITEM -->
+      </ul>
+    </section>
+    <!-- /PORTFOLIO CONTENT -->
 
     <!-- MY OLD CODE -->
     <div>
@@ -329,6 +162,7 @@ export default {
     };
   },
   created: function() {
+    this.$parent.headerImagePath = "section-7.jpg";
     axios
       .get("api/colleges")
       .then((response) => {
