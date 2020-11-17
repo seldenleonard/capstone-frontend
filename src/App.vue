@@ -1,11 +1,5 @@
 <template>
   <div id="app">
-    <!-- PRELOADER -->
-    <div class="page-loader">
-      <div class="loader">Loading...</div>
-    </div>
-    <!-- /PRELOADER -->
-
     <!-- NAVIGATION -->
     <nav
       class="navbar navbar-custom navbar-black navbar-fixed-top"
@@ -26,7 +20,7 @@
             <span class="icon-bar"></span>
           </button>
           <h1>
-            <router-link to="/artworks" class="navbar-brand">Art U</router-link>
+            <router-link to="/colleges" class="navbar-brand">Art U</router-link>
           </h1>
         </div>
         <div class="collapse navbar-collapse" id="custom-collapse">
@@ -38,26 +32,22 @@
             <li>
               <router-link to="/about">About</router-link>
             </li>
-            <li>
-              <router-link v-if="!isLoggedIn()" to="/signup"
-                >Signup</router-link
-              >
+            <li v-if="!isLoggedIn()">
+              <router-link to="/signup">Signup</router-link>
             </li>
-            <li>
-              <router-link v-if="!isLoggedIn()" to="/login">Login</router-link>
+            <li v-if="!isLoggedIn()">
+              <router-link to="/login">Login</router-link>
             </li>
-            <li>
-              <router-link v-if="isLoggedIn()" :to="`/users/${getUserId()}`"
+            <li v-if="isLoggedIn()">
+              <router-link :to="`/users/${getUserId()}`"
                 >My Profile</router-link
               >
             </li>
-            <li>
-              <router-link v-if="isLoggedIn()" to="/artworks/new"
-                >Create Artwork</router-link
-              >
+            <li v-if="isLoggedIn()">
+              <router-link to="/artworks/new">Create Artwork</router-link>
             </li>
-            <li>
-              <router-link v-if="isLoggedIn()" to="/logout">Logout</router-link>
+            <li v-if="isLoggedIn()">
+              <router-link to="/logout">Logout</router-link>
             </li>
             <li>
               <router-link to="/artworks">Artworks</router-link>
@@ -126,24 +116,28 @@
         <button @click="openUploadModal">Upload files</button>
       </div> -->
     <!-- </div> -->
+
+    <router-view :key="$route.path" />
+
     <!-- FOOTER -->
     <footer class="footer">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 text-center">
             <p class="copyright font-inc m-b-0">
-              © 2015 <a href="index.html">SEMANTIC</a>, All Rights Reserved.
+              © 2020 <router-link to="/colleges">Art U</router-link>
+              <!-- © 2015 <a href="index.html">SEMANTIC</a>, All Rights Reserved. -->
             </p>
           </div>
         </div>
       </div>
     </footer>
     <!-- /FOOTER -->
+
     <!-- Scroll-up -->
     <div class="scroll-up">
       <a href="#totop"><i class="fa fa-angle-double-up"></i></a>
     </div>
-    <router-view :key="$route.path" />
   </div>
 </template>
 

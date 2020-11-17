@@ -1,28 +1,220 @@
 <template>
   <div class="artworks-show">
-    <div v-for="image in artwork.images">
-      <img :src="image.url" alt="" />
+    <!-- HOME -->
+    <section
+      id="home"
+      class="module-hero module-parallax module-fade module-full-height bg-dark-50"
+      data-background="assets/images/section-1.jpg"
+    >
+      <div class="hs-caption container">
+        <div class="caption-content">
+          <div class="hs-title-size-3 font-alt m-b-20">
+            Project name
+          </div>
+          <div class="hs-title-size-1 font-inc">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean<br />
+            commodo ligula eget dolor. Aenean massa.
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /HOME -->
+
+    <!-- WRAPPER -->
+    <div class="wrapper">
+      <!-- PORTFOLIO DESCRIPTION -->
+      <section class="module-small">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="work-details">
+                <h3 class="work-details-title font-alt">{{ artwork.title }}</h3>
+                <ul>
+                  <li class="font-inc">
+                    <strong>Artist: </strong>{{ artwork.user.name }}
+                  </li>
+                  <li class="font-inc">
+                    <strong>College: </strong>{{ artwork.college.name }}
+                  </li>
+                  <li class="font-inc">
+                    <strong>Date: </strong>{{ artwork.year }}
+                  </li>
+                  <li class="font-inc">
+                    <strong>Medium: </strong>{{ artwork.medium }}
+                  </li>
+                  <li v-if="artwork.dimensions" class="font-inc">
+                    <strong>Dimensions: </strong>{{ artwork.dimensions }}
+                  </li>
+                  <li v-if="artwork.description" class="font-inc">
+                    <strong>Description: </strong>{{ artwork.description }}
+                  </li>
+                  <button
+                    v-if="artwork.upvote"
+                    v-on:click="destroyUpvote()"
+                    type="submit"
+                    class="btn btn-d btn-round"
+                  >
+                    <i class="fa fa-child"></i> Remove Upvote
+                  </button>
+                  <button
+                    v-else
+                    v-on:click="createUpvote()"
+                    type="submit"
+                    class="btn btn-border-d btn-round"
+                  >
+                    <i class="fa fa-child"></i> Upvote
+                  </button>
+                </ul>
+              </div>
+            </div>
+            <div class="work-details">
+              <div class="col-sm-6">
+                <!-- <br /><br /><br /> -->
+                <ul>
+                  <p>
+                    The languages only differ in their grammar, their
+                    pronunciation and their most common words. Everyone realizes
+                    why a new common language would be desirable: one could
+                    refuse to pay expensive translators.
+                  </p>
+                  <li v-if="artwork.price" class="font-inc">
+                    <strong>Price: </strong>${{ artwork.price }}
+                  </li>
+                  <li v-if="artwork.price" class="font-inc">
+                    <strong>Inquiries: </strong>{{ artwork.user.email }}
+                  </li>
+                  <li class="font-inc">
+                    <strong>Upvotes: </strong>{{ artwork.upvotes_count }}
+                  </li>
+                  <li class="font-inc">
+                    <strong
+                      >Posted: {{ relativeDate(artwork.created_at) }}
+                    </strong>
+                  </li>
+                  <li class="font-inc">
+                    <strong>Online: </strong
+                    ><a href="#" target="_blank">www.example.com</a>
+                  </li>
+                  <router-link
+                    v-if="artwork.user.id === $parent.getUserId()"
+                    :to="`/artworks/${artwork.id}/edit`"
+                  >
+                    <button type="submit" class="btn btn-d btn-circle btn-xs">
+                      Edit Artwork
+                    </button>
+                  </router-link>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /PORTFOLIO DESCRIPTION -->
+
+      <!-- PORTFOLIO CONTENT -->
+      <section class="module p-t-0 p-b-0">
+        <div class="container">
+          <div class="row">
+            <div v-for="image in artwork.images" class="col-sm-12">
+              <p><img :src="image.url" alt="" /></p>
+            </div>
+          </div>
+          <!-- .row -->
+        </div>
+      </section>
+      <!-- /PORTFOLIO CONTENT -->
+
+      <!-- PAGINATION -->
+      <section class="module-small p-t-50">
+        <div class="container">
+          <div class="pagination font-inc text-uppercase">
+            <a href="#"><i class="fa fa-angle-left"></i> Prev</a>
+            <router-link :to="`/users/${artwork.user.id}`"
+              ><button>View Artist</button></router-link
+            >
+            <a href="#">Next <i class="fa fa-angle-right"></i></a>
+          </div>
+        </div>
+      </section>
+      <!-- /PAGINATION -->
+
+      <!-- DIVIDER -->
+      <hr class="divider-w" />
+      <!-- /DIVIDER -->
+
+      <!-- CONTACT -->
+      <section class="module-small">
+        <div class="container">
+          <div class="row">
+            <!-- CONTENT BOX -->
+            <div class="col-sm-4">
+              <div class="content-box">
+                <div class="content-box-icon">
+                  <span class="icon-map-pin"></span>
+                </div>
+                <div class="content-box-title font-inc">
+                  007 Steet, City, USA
+                </div>
+              </div>
+            </div>
+            <!-- /CONTENT BOX -->
+
+            <!-- CONTENT BOX -->
+            <div class="col-sm-4">
+              <div class="content-box">
+                <div class="content-box-icon">
+                  <span class="icon-phone"></span>
+                </div>
+                <div class="content-box-title font-inc">
+                  +1 234 567 89 00
+                </div>
+              </div>
+            </div>
+            <!-- /CONTENT BOX -->
+
+            <!-- CONTENT BOX -->
+            <div class="col-sm-4">
+              <div class="content-box">
+                <div class="content-box-icon">
+                  <span class="icon-envelope"></span>
+                </div>
+                <div class="content-box-title font-inc">
+                  semantic@email.com
+                </div>
+              </div>
+            </div>
+            <!-- /CONTENT BOX -->
+          </div>
+        </div>
+      </section>
+      <!-- /CONTACT -->
     </div>
+    <!-- /WRAPPER -->
+    <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+    <!-- MY OLD CODE -->
+    <!-- <div v-for="image in artwork.images">
+      <img :src="image.url" alt="" />
+    </div> -->
     <div>
-      <h2>Title: {{ artwork.title }}</h2>
+      <!-- <h2>Title: {{ artwork.title }}</h2>
       <p>Artist: {{ artwork.user.name }}</p>
       <p>College: {{ artwork.college.name }}</p>
       <p>Date: {{ artwork.year }}</p>
-      <p>Medium: {{ artwork.medium }}</p>
-      <p v-if="artwork.dimensions">Dimensions: {{ artwork.dimensions }}</p>
+      <p>Medium: {{ artwork.medium }}</p> -->
+      <!-- <p v-if="artwork.dimensions">Dimensions: {{ artwork.dimensions }}</p>
       <p v-if="artwork.description">Description: {{ artwork.description }}</p>
       <p v-if="artwork.price">Price: $ {{ artwork.price }}</p>
-      <p>Upvotes: {{ artwork.upvotes_count }}</p>
-      <h5 class="category">Posted {{ relativeDate(artwork.created_at) }}</h5>
-      <router-link
+      <p>Upvotes: {{ artwork.upvotes_count }}</p> -->
+      <!-- <h5 class="category">Posted {{ relativeDate(artwork.created_at) }}</h5> -->
+      <!-- <router-link
         v-if="artwork.user.id === $parent.getUserId()"
         :to="`/artworks/${artwork.id}/edit`"
       >
         <button>Edit Artwork</button>
-      </router-link>
-      <router-link :to="`/users/${artwork.user.id}`"
+      </router-link> -->
+      <!-- <router-link :to="`/users/${artwork.user.id}`"
         ><button>View Artist</button></router-link
-      >
+      > -->
     </div>
     <button v-if="artwork.upvote" v-on:click="destroyUpvote()">
       Destroy Upvote
