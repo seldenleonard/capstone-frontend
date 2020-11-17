@@ -10,7 +10,7 @@
 export default {
   data: function() {
     return {
-      message: "This is the Home Page",
+      message: "",
     };
   },
   created: function() {},
