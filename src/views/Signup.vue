@@ -68,14 +68,7 @@
                   v-model="passwordConfirmation"
                 />
               </div>
-              <div class="form-group">
-                <input
-                  class="form-control input-lg"
-                  type="text"
-                  placeholder="Style of Art"
-                  v-model="art_style"
-                />
-              </div>
+
               <br />
 
               <div class="">
@@ -142,6 +135,14 @@
                             type="number"
                             placeholder="Graduation Year"
                             v-model="graduation_year"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <input
+                            class="form-control input-lg"
+                            type="text"
+                            placeholder="Style of Art"
+                            v-model="art_style"
                           />
                         </div>
                         <div class="form-group">
