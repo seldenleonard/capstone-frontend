@@ -102,7 +102,7 @@
                       <!-- Tab start -->
                       <div class="tab-pane" id="yes">
                         <!-- BELOW GOES INSIDE OF TABS -->
-                        <div class="form-group">
+                        <div class="form-group" v-on="(artist = true)">
                           <label>Select a College:</label><br />
                           <select v-model="collegeId">
                             <option
@@ -166,7 +166,11 @@
                       <!-- Tab end -->
 
                       <!-- Tab start -->
-                      <div class="tab-pane active" id="no">
+                      <div
+                        class="tab-pane active"
+                        id="no"
+                        v-on="(artist = false)"
+                      >
                         Welcome to the community!
                       </div>
                       <!-- Tab end -->
@@ -312,7 +316,7 @@ export default {
       email: "",
       password: "",
       passwordConfirmation: "",
-      artist: "true",
+      artist: "",
       artStyle: "",
       collegeId: "",
       major: "",

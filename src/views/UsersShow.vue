@@ -25,16 +25,20 @@
     </section>
     <!-- /HEADER -->
 
-    <img :src="user.image_url" alt="" />
+    <img v-if="user.artist" :src="user.image_url" alt="" />
     <h2>{{ user.name }}</h2>
     <router-link :to="`/colleges/${user.college_id}`">
-      <p>{{ user.college_name }}</p>
+      <p v-if="user.artist && user.college">{{ user.college_name }}</p>
     </router-link>
-    <p v-if="user.graduation_year">Class of {{ user.graduation_year }}</p>
-    <p v-if="user.major">Major: {{ user.major }}</p>
-    <p v-if="user.minor">Minor: {{ user.minor }}</p>
-    <p v-if="user.art_style">Style of Art: {{ user.art_style }}</p>
-    <p v-if="user.bio">Bio: {{ user.bio }}</p>
+    <p v-if="user.artist && user.graduation_year">
+      Class of {{ user.graduation_year }}
+    </p>
+    <p v-if="user.artist && user.major">Major: {{ user.major }}</p>
+    <p v-if="user.artist && user.minor">Minor: {{ user.minor }}</p>
+    <p v-if="user.artist && user.art_style">
+      Style of Art: {{ user.art_style }}
+    </p>
+    <p v-if="user.artist && user.bio">Bio: {{ user.bio }}</p>
     <p v-if="user.artist">Contact: {{ user.email }}</p>
     <p v-else>Email: {{ user.email }}</p>
     <router-link
