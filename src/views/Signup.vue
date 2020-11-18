@@ -1,5 +1,203 @@
 <template>
   <div class="signup">
+    <!-- WRAPPER -->
+    <div class="wrapper">
+      <!-- HOME -->
+      <section
+        class="module module-header bg-dark bg-dark-50"
+        data-background="assets/images/section-7.jpg"
+      >
+        <div class="container">
+          <!-- MODULE TITLE -->
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+              <h1 class="module-title font-alt align-center">Forms</h1>
+            </div>
+          </div>
+          <!-- /MODULE TITLE -->
+        </div>
+      </section>
+      <!-- /HOME -->
+
+      <!-- COMPONENTS -->
+      <section class="module">
+        <div class="container">
+          <div class="row">
+            <form
+              v-on:submit.prevent="createUser()"
+              class="col-sm-8 col-sm-offset-2"
+            >
+              <h4 class="font-alt m-t-0 m-b-0"><strong>Signup</strong></h4>
+              <hr class="divider-w m-t-10 m-b-20" />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                v-for="error in errors"
+              >
+                <strong>Error:</strong> {{ error }}
+              </div>
+              <div class="form-group">
+                <input
+                  class="form-control input-lg"
+                  type="text"
+                  placeholder="Name"
+                  v-model="name"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  class="form-control input-lg"
+                  type="email"
+                  placeholder="Email"
+                  v-model="email"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  class="form-control input-lg"
+                  type="password"
+                  placeholder="Password"
+                  v-model="password"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  class="form-control input-lg"
+                  type="password"
+                  placeholder="Password Confirmation"
+                  v-model="passwordConfirmation"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  class="form-control input-lg"
+                  type="text"
+                  placeholder="Style of Art"
+                  v-model="art_style"
+                />
+              </div>
+              <br />
+
+              <div class="">
+                <div>
+                  <!-- START OF PASTED IN -->
+                  <!-- TABS -->
+                  <h5 class="font-alt m-b-0">Are You A Student Artist?</h5>
+                  <hr class="divider-w m-t-10 m-b-20" />
+
+                  <div role="tabpanel">
+                    <!-- Nav tabs start-->
+                    <ul
+                      class="nav nav-tabs font-inc text-uppercase"
+                      role="tablist"
+                    >
+                      <li class="">
+                        <a href="#yes" data-toggle="tab" aria-expanded="false"
+                          ><span class="icon-paintbrush"></span> Yes</a
+                        >
+                      </li>
+                      <li class="active">
+                        <a href="#no" data-toggle="tab" aria-expanded="true"
+                          ><span class="icon-profile-male"></span> No</a
+                        >
+                      </li>
+                    </ul>
+                    <!-- Nav tabs end -->
+
+                    <!-- Tab panes start-->
+                    <div class="tab-content">
+                      <!-- Tab start -->
+                      <div class="tab-pane" id="yes">
+                        <!-- BELOW GOES INSIDE OF TABS -->
+                        <div class="form-group">
+                          <label>Select a College:</label><br />
+                          <select v-model="collegeId">
+                            <option
+                              v-for="college in colleges"
+                              v-bind:value="college.id"
+                            >
+                              {{ college.name }}
+                            </option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <input
+                            class="form-control input-lg"
+                            type="text"
+                            placeholder="Major"
+                            v-model="major"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <input
+                            class="form-control input-lg"
+                            type="text"
+                            placeholder="Minor"
+                            v-model="minor"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <input
+                            class="form-control input-lg"
+                            type="number"
+                            placeholder="Graduation Year"
+                            v-model="graduation_year"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <input
+                            class="form-control input-lg"
+                            type="text"
+                            placeholder="Bio (500 Character Max)"
+                            v-model="bio"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label>Profile Image:</label>
+                          <input
+                            class="form-control input-lg"
+                            type="file"
+                            v-on:change="setFile($event)"
+                            ref="fileInput"
+                          />
+                        </div>
+                      </div>
+                      <!-- Tab end -->
+
+                      <!-- Tab start -->
+                      <div class="tab-pane active" id="no">
+                        Welcome to the community!
+                      </div>
+                      <!-- Tab end -->
+                    </div>
+                    <!-- Tab panes end-->
+                  </div>
+                  <!-- /TABS -->
+                </div>
+                <!-- END OF PASTED IN -->
+              </div>
+              <button
+                type="submit"
+                class="btn btn-border-d btn-circle"
+                value="Submit"
+              >
+                <i class="fa fa-cog fa-spin"></i>
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- / COMPONENTS  -->
+
+      <!-- DIVIDER -->
+      <hr class="divider-w" />
+      <!-- /DIVIDER -->
+    </div>
+    <!-- /WRAPPER -->
+
+    <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+    <!-- My Old Code -->
     <form v-on:submit.prevent="createUser()">
       <h1>Signup</h1>
       <ul>

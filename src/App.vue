@@ -26,6 +26,12 @@
         <div class="collapse navbar-collapse" id="custom-collapse">
           <!-- Router Links in Nav Bar -->
           <ul class="nav navbar-nav navbar-right">
+            <li>
+              <router-link to="/colleges">Colleges</router-link>
+            </li>
+            <li>
+              <router-link to="/artworks">Artworks</router-link>
+            </li>
             <li v-if="!isLoggedIn()">
               <router-link to="/signup">Signup</router-link>
             </li>
@@ -42,12 +48,6 @@
             </li>
             <li v-if="isLoggedIn()">
               <router-link to="/logout">Logout</router-link>
-            </li>
-            <li>
-              <router-link to="/artworks">Artworks</router-link>
-            </li>
-            <li>
-              <router-link to="/colleges">Colleges</router-link>
             </li>
           </ul>
         </div>
