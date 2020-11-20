@@ -6,12 +6,27 @@
       <section
         class="module module-header bg-dark bg-dark-50"
         data-background="assets/images/section-7.jpg"
+        style="background-image: url(/assets/images/section-7.jpg);"
       >
         <div class="container">
           <!-- MODULE TITLE -->
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
-              <h1 class="module-title font-alt align-center">Forms</h1>
+              <h1 class="module-title font-alt align-center">
+                <i class="fa fa-key"></i>
+                <p></p>
+                Login
+              </h1>
+              <div class="module-subtitle font-inc align-center">
+                <i class="fa fa-quote-left"></i>
+                If I could say it in words there would be no reason to paint
+
+                <i class="fa fa-quote-right"></i>
+
+                <strong>
+                  <p class="font-inc font-uppercase">- Edward Hopper</p>
+                </strong>
+              </div>
             </div>
           </div>
           <!-- /MODULE TITLE -->

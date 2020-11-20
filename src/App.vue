@@ -76,7 +76,7 @@
                   <span class="icon-map-pin"></span>
                 </div>
                 <div class="content-box-title font-inc">
-                  007 Steet, City, USA
+                  007 Patron Street, Collegetown, USA
                 </div>
               </div>
             </div>
@@ -102,7 +102,7 @@
                   <span class="icon-envelope"></span>
                 </div>
                 <div class="content-box-title font-inc">
-                  semantic@email.com
+                  info@artu.com
                 </div>
               </div>
             </div>

@@ -1,7 +1,291 @@
 <template>
   <div class="artworks-edit">
-    <form v-on:submit.prevent="updateArtwork()">
-      <h1>Edit Artwork</h1>
+    <!-- WRAPPER -->
+    <div class="wrapper">
+      <!-- HOME -->
+      <section
+        class="module module-header bg-dark bg-dark-50"
+        data-background="assets/images/section-7.jpg"
+      >
+        <div class="container">
+          <!-- MODULE TITLE -->
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+              <h1 class="module-title font-alt align-center">
+                <i class="fa fa-pencil"></i>
+                <p></p>
+                Update Artwork
+              </h1>
+              <div class="module-subtitle font-inc align-center">
+                <i class="fa fa-quote-left"></i>
+                If people knew how hard I worked to get my mastery, it wouldn’t
+                seem so wonderful at all
+                <i class="fa fa-quote-right"></i>
+
+                <strong>
+                  <p class="font-inc font-uppercase">- Michelangelo</p>
+                </strong>
+              </div>
+            </div>
+          </div>
+          <!-- /MODULE TITLE -->
+        </div>
+      </section>
+      <!-- /HOME -->
+
+      <!-- IMAGE-SPECIFIC ACTIONS -->
+      <!-- <section class="module p-b-0">
+        <div class="container">
+          <div class="col-sm-4 col-md-6 col-lg-8">
+            <form v-on:submit.prevent="createImage()">
+              <div class="row multi-columns-row post-columns">
+                <div class="post">
+                  <div class="post-thumbnail" v-for="image in artwork.images">
+                    <img :src="image.url" alt="" />
+                    <button
+                      type="destroy"
+                      class="btn btn btn-danger btn-circle btn-xs"
+                      value="Destroy"
+                      v-on:click="destroyImage(image)"
+                    >
+                      <i class="fa fa-trash"></i> Delete Image
+                    </button>
+                  </div>
+                  <div class="post-header">
+                    <h2 class="post-title font-alt"></h2>
+                    <div class="post-meta font-inc"></div>
+                  </div>
+                  <div class="post-entry"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section> -->
+      <!-- /IMAGE-SPECIFIC ACTIONS -->
+
+      <!-- COMPONENTS -->
+      <section class="module">
+        <div class="container">
+          <div class="row">
+            <form
+              v-on:submit.prevent="updateArtwork()"
+              class="col-sm-8 col-sm-offset-2"
+            >
+              <h4 class="font-alt m-t-0 m-b-0"><strong>New</strong></h4>
+              <hr class="divider-w m-t-10 m-b-20" />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                v-for="error in errors"
+              >
+                <strong>Error:</strong> {{ error }}
+              </div>
+              <div class="form-group">
+                <label>Title</label>
+                <input
+                  type="text"
+                  class="form-control input-lg"
+                  v-model="artwork.title"
+                  placeholder="The Starry Night"
+                />
+              </div>
+              <div class="form-group">
+                <label>Year</label>
+                <input
+                  type="number"
+                  class="form-control input-lg"
+                  v-model="artwork.year"
+                  placeholder="1889"
+                />
+              </div>
+              <div class="form-group">
+                <label>Medium</label>
+                <input
+                  type="text"
+                  class="form-control input-lg"
+                  v-model="artwork.medium"
+                  placeholder="Oil on Canvas"
+                />
+              </div>
+
+              <div>
+                <label>Current Dimensions</label>
+                <input
+                  class="form-control input-lg"
+                  type="text"
+                  :placeholder="artwork.dimensions"
+                  readonly=""
+                />
+                <div class="form-group">
+                  <hr class="divider-w m-t-10 m-b-20" />
+                  <h5 class="font-alt">Enter New Dimensions?</h5>
+                  <input
+                    type="checkbox"
+                    id="newDimensions"
+                    v-model="newDimensions"
+                  />
+                  <label style="padding-left: 5px;" for="checkbox">Yes</label>
+                </div>
+                <div v-if="newDimensions">
+                  <small class="center-align"
+                    >(<strong>Note:</strong> Any changes to Length, Width, or
+                    Height will overwrite all previous Dimensions)</small
+                  ><br /><br />
+                  <div class="form-group">
+                    <label>Length (in.)</label>
+                    <input
+                      type="number"
+                      class="form-control input-lg"
+                      v-model="artwork.length"
+                      placeholder=""
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>Width (in.)</label>
+                    <input
+                      type="number"
+                      class="form-control input-lg"
+                      v-model="artwork.width"
+                      placeholder=""
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>Height (in.)</label>
+                    <input
+                      type="number"
+                      class="form-control input-lg"
+                      v-model="artwork.height"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+                <hr class="divider-w m-t-10 m-b-10" />
+              </div>
+
+              <div class="form-group">
+                <label>Description</label>
+                <input
+                  type="text"
+                  class="form-control input-lg"
+                  v-model="artwork.description"
+                  placeholder="The view before sunrise from east-facing window at Saint-Rémy-de-Provence."
+                />
+              </div>
+              <div class="form-group">
+                <label>Price ($)</label>
+                <input
+                  type="number"
+                  class="form-control input-lg"
+                  v-model="artwork.price"
+                  placeholder="273000000"
+                />
+              </div>
+              <div class="form-group">
+                <label>Images</label>
+                <input
+                  type="file"
+                  class="form-control input-lg"
+                  v-on:change="setFile($event)"
+                  ref="fileInput"
+                />
+              </div>
+              <div v-if="image1" class="form-group">
+                <input
+                  type="file"
+                  class="form-control input-lg"
+                  v-on:change="setFile($event)"
+                  ref="fileInput"
+                />
+              </div>
+              <div v-if="image2" class="form-group">
+                <input
+                  type="file"
+                  class="form-control input-lg"
+                  v-on:change="setFile($event)"
+                  ref="fileInput"
+                />
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-border-d btn-circle"
+                  value="createImage"
+                  v-on:click="createImage()"
+                >
+                  Add Image
+                </button>
+                <p></p>
+              </div>
+              <div v-for="image in artwork.images" class="p-t-20 p-b-10">
+                <img :src="image.url" alt="" />
+                <button
+                  type="destroy"
+                  class="btn btn btn-warning btn-circle btn-xs"
+                  value="Destroy"
+                  v-on:click="destroyImage(image)"
+                >
+                  <i class="fa fa-trash"></i> Delete Image
+                </button>
+              </div>
+
+              <div class="p-t-60">
+                <strong> <hr class="divider-w m-t-10 m-b-10" /> </strong>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-border-d btn-circle"
+                    value="Submit"
+                  >
+                    <i class="fa fa-cog fa-spin"></i>
+                    Submit
+                  </button>
+                  <br /><br /><br />
+                  <button
+                    type="destroy"
+                    class="btn btn btn-danger btn-circle btn-xs"
+                    value="Destroy"
+                    v-on:click="destroyArtwork()"
+                  >
+                    <i class="fa fa-trash"></i>
+                    Delete Artwork
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="form-group">
+                <label>New Image:</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  v-on:change="setFile($event)"
+                  ref="fileInput"
+                />
+              </div> -->
+              <!-- <div>
+                <button
+                  type="submit"
+                  class="btn btn-border-d btn-circle"
+                  value="createImage"
+                  v-on:click="createImage()"
+                >
+                  Add Image
+                </button>
+              </div> -->
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- / COMPONENTS  -->
+
+      <!-- DIVIDER -->
+      <hr class="divider-w" />
+      <!-- /DIVIDER -->
+    </div>
+    <!-- /WRAPPER -->
+
+    <!-- MY OLD CODE -->
+    <!-- <form v-on:submit.prevent="updateArtwork()"> -->
+    <!-- <h1>Edit Artwork</h1>
       <ul>
         <li v-for="error in errors">{{ error }}</li>
       </ul>
@@ -16,8 +300,8 @@
       <div>
         <label>Medium:</label>
         <input type="text" name="" v-model="artwork.medium" />
-      </div>
-      <div>
+      </div> -->
+    <!-- <div>
         <label>Dimensions:</label>
         <p>{{ artwork.dimensions }}</p>
         <input
@@ -26,10 +310,10 @@
           class="form-control"
           v-model="dimensions"
         />
-        <label for="checkbox">Edit</label>
+        <label for="checkbox">Edit</label> -->
 
-        <!-- THIS IS AN ATTEMPT TO SHOW DIMENSIONS AND THEN HAVE AN EDIT CHECKBOX THAT WILL THEN DISPLAY THE L, W, AND H IF CHECKED (IN ORDER TO AVOID THE DIFFICULTY OF ATTEMPTING TO POPULATE THE L, W, AND H BOXES BECAUSE THEY AR ENOT ATRIBUTES OF THE MODEL) -->
-        <div v-if="dimensions">
+    <!-- THIS IS AN ATTEMPT TO SHOW DIMENSIONS AND THEN HAVE AN EDIT CHECKBOX THAT WILL THEN DISPLAY THE L, W, AND H IF CHECKED (IN ORDER TO AVOID THE DIFFICULTY OF ATTEMPTING TO POPULATE THE L, W, AND H BOXES BECAUSE THEY ARE NOT ATRIBUTES OF THE MODEL) -->
+    <!-- <div v-if="dimensions">
           <label>Length:</label>
           <input type="text" name="" v-model="length" />
 
@@ -38,24 +322,24 @@
 
           <label>Height:</label>
           <input type="text" name="" v-model="height" />
-        </div>
-      </div>
-      <div>
+        </div> -->
+    <!-- </div> -->
+    <!-- <div>
         <label>Description:</label>
         <input type="text" name="" v-model="artwork.description" />
       </div>
       <div>
         <label>Price: $</label>
         <input type="number" name="" v-model="artwork.price" />
-      </div>
+      </div> -->
 
-      <div>
+    <!-- <div>
         <input type="submit" class="" value="Update" />
       </div>
-      <button class="" v-on:click="destroyArtwork()">Delete</button>
-    </form>
+      <button class="" v-on:click="destroyArtwork()">Delete</button> -->
+    <!-- </form> -->
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>New Image:</label>
       <input
         type="file"
@@ -68,7 +352,7 @@
     <div v-for="image in artwork.images">
       <img :src="image.url" alt="" />
       <button v-on:click="destroyImage(image)">Delete</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -79,6 +363,10 @@ export default {
   data: function() {
     return {
       dimensions: "",
+      newDimensions: false,
+      image1: "",
+      image2: "",
+      image3: "",
       length: "",
       width: "",
       height: "",
@@ -95,9 +383,20 @@ export default {
     });
   },
   methods: {
+    // setFile: function(event) {
+    //   if (event.target.files.length > 0) {
+    //     this.image = event.target.files[0];
+    //   }
+    // },
     setFile: function(event) {
       if (event.target.files.length > 0) {
-        this.image = event.target.files[0];
+        if (this.image2) {
+          this.image3 = event.target.files[0];
+        } else if (this.image1) {
+          this.image2 = event.target.files[0];
+        } else {
+          this.image1 = event.target.files[0];
+        }
       }
     },
     updateArtwork: function() {
@@ -107,27 +406,40 @@ export default {
       formData.append("description", this.artwork.description);
       formData.append("price", this.artwork.price);
       formData.append("year", this.artwork.year);
-      if (this.length && this.width && this.height) {
-        formData.append(
-          "dimensions",
-          `${this.length}" x ${this.width}" x ${this.height}"`
-        );
-      } else if (this.length && this.width) {
-        formData.append("dimensions", `${this.length}" x ${this.width}"`);
-      } else if (this.length && this.height) {
-        formData.append("dimensions", `${this.length}" x ${this.height}"`);
-      } else if (this.height && this.width) {
-        formData.append("dimensions", `${this.height}" x ${this.width}"`);
-      } else if (this.length || this.height || this.width) {
-        formData.append(
-          "dimensions",
-          `${this.length || this.height || this.width}"`
-        );
+      if (this.image1) {
+        formData.append("image1", this.image1);
+      }
+      if (this.image2) {
+        formData.append("image2", this.image2);
+      }
+      if (this.image3) {
+        formData.append("image3", this.image3);
+      }
+      if (this.newDimensions === true) {
+        if (this.length && this.width && this.height) {
+          formData.append(
+            "dimensions",
+            `${this.length}" x ${this.width}" x ${this.height}"`
+          );
+        } else if (this.length && this.width) {
+          formData.append("dimensions", `${this.length}" x ${this.width}"`);
+        } else if (this.length && this.height) {
+          formData.append("dimensions", `${this.length}" x ${this.height}"`);
+        } else if (this.height && this.width) {
+          formData.append("dimensions", `${this.height}" x ${this.width}"`);
+        } else if (this.length || this.height || this.width) {
+          formData.append(
+            "dimensions",
+            `${this.length || this.height || this.width}"`
+          );
+        }
       }
       axios
         .patch(`/api/artworks/${this.artwork.id}`, formData)
         .then((response) => {
           this.$router.push(`/artworks/${this.artwork.id}`);
+          console.log(this.newDimensions);
+          // Get rid of this console.log when I resolve the dimensions issue
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
@@ -179,9 +491,3 @@ export default {
   },
 };
 </script>
-
-// NOTE TO SELF ABOUT DIMENSIONS AS (L x W x H) IN THREE SEPEARATE INPUTS AND
-WITH LOGIC TO MAKE THEM FIT TOGETHER NO MATTER WHAT BOXES ARE FILLED IN: I
-STOPPED IMPLEMENTING IT PREMATURELY BECAUSE ADDING CLOUDINARY WOULD CHANGE IT NO
-MATTER WHAT. SO FAR I HAVE ENTERED IN THE INPUT BOXES AND THE DATA VALUES SO ALL
-I NEED TO DO LEFT IS ADD IN THE formData.append() if statements and logic etc.
