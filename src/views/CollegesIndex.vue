@@ -53,17 +53,17 @@
                 opportunity to live and create in a collaborative exploratory
                 environment. We seek to highlight the artists whose work and
                 style were, at least in part, realized through the distinct
-                pressures, experiences, and lifestyle that are fostered in
-                American colleges and universities. Though there is certainly a
-                great degree of variation between any two schools in the United
-                States, there is a marked culture of learning and embracing
-                college as an entire lifestyle for a period of years. Existing
-                within this broader culture, there is a nonetheless a great
-                degree of variation between any two colleges in the United
-                States, which is exactly why we give you the opportunity to
-                explore them all, and see those differences, similarities, and
-                recurring themes as they are conveyed through the artworks of
-                students.
+                pressures, experiences, and lifestyles that are fostered in
+                American colleges and universities. Across these institutions,
+                there is a marked culture of learning and embracing college as
+                not only a formal education, but also as fundamental to shaping
+                and grounding nearly all aspects of one's life for a period of
+                years. Existing within this broader culture, there is certainly
+                a great degree of variation between any two colleges in the
+                United States, which is exactly why we give you the opportunity
+                to explore them all, and see those differences, similarities,
+                and recurring themes as they are conveyed through the artworks
+                of students.
               </p>
             </div>
           </div>

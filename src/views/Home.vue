@@ -49,7 +49,7 @@
                 generation of artists whose contributions will undoubtedly
                 inspire and create change in our world. The Art U Team is as
                 passionate about creating, discovering, sharing, and collecting
-                art
+                art as our community, and we welcome new members.
               </p>
               <p>
                 The evolution of art is constant revolution. Art will grow,
