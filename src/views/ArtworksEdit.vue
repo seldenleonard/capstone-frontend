@@ -6,6 +6,8 @@
       <section
         class="module module-header bg-dark bg-dark-50"
         data-background="assets/images/section-7.jpg"
+        style="background-image: url(/assets/images/dark-sand.jpg
+);"
       >
         <div class="container">
           <!-- MODULE TITLE -->

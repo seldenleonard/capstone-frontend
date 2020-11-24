@@ -4,7 +4,7 @@
     <section
       class="module module-header bg-dark bg-dark-50"
       data-background="/assets/images/section-7.jpg"
-      style="background-image: url(/assets/images/section-7.jpg);"
+      style="background-image: url(/assets/images/Sky-unsplash.jpg);"
     >
       <div class="container">
         <!-- MODULE TITLE -->
