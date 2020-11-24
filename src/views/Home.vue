@@ -18,7 +18,7 @@
 
             <div class="module-subtitle font-inc align-center">
               <div class="post-meta font-inc">
-                Six Schools | Dozens of Artists | Hundreds of Artworks |
+                Eight Schools | Dozens of Artists | Hundreds of Artworks |
                 Thousands of Art-Lovers
               </div>
               <div class="post-meta font-inc"></div>
