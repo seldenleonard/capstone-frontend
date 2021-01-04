@@ -39,17 +39,18 @@
               <p>
                 <strong>Art U</strong> provides a platform for college and
                 university student artists to showcase their artworks, represent
-                their school, and accrue a following through social engagement
+                their schools, and accrue followings through social engagement
                 with other artists, curators, collectors, and everyday art
-                consumers. Art U is a space where student artists across the
-                United States can connect with a global community.
+                lovers. Art U is a space where student artists across the United
+                States can connect with a global community.
               </p>
               <p>
                 We are a mission-driven organization seeking to uplift the next
                 generation of artists whose contributions will undoubtedly
                 inspire and create change in our world. The Art U Team is as
                 passionate about creating, discovering, sharing, and collecting
-                art as our community, and we welcome new members.
+                art as our community, and we welcome new members wholeheartedly.
+                <!-- Note: This should probably be "as is our community", unless im saying the Art U team is as passionate about art as we are about our community -->
               </p>
               <p>
                 The evolution of art is constant revolution. Art will grow,
