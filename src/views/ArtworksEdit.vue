@@ -35,37 +35,6 @@
       </section>
       <!-- /HOME -->
 
-      <!-- IMAGE-SPECIFIC ACTIONS -->
-      <!-- <section class="module p-b-0">
-        <div class="container">
-          <div class="col-sm-4 col-md-6 col-lg-8">
-            <form v-on:submit.prevent="createImage()">
-              <div class="row multi-columns-row post-columns">
-                <div class="post">
-                  <div class="post-thumbnail" v-for="image in artwork.images">
-                    <img :src="image.url" alt="" />
-                    <button
-                      type="destroy"
-                      class="btn btn btn-danger btn-circle btn-xs"
-                      value="Destroy"
-                      v-on:click="destroyImage(image)"
-                    >
-                      <i class="fa fa-trash"></i> Delete Image
-                    </button>
-                  </div>
-                  <div class="post-header">
-                    <h2 class="post-title font-alt"></h2>
-                    <div class="post-meta font-inc"></div>
-                  </div>
-                  <div class="post-entry"></div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section> -->
-      <!-- /IMAGE-SPECIFIC ACTIONS -->
-
       <!-- COMPONENTS -->
       <section class="module">
         <div class="container">
@@ -254,25 +223,6 @@
                   </button>
                 </div>
               </div>
-              <!-- <div class="form-group">
-                <label>New Image:</label>
-                <input
-                  type="file"
-                  class="form-control"
-                  v-on:change="setFile($event)"
-                  ref="fileInput"
-                />
-              </div> -->
-              <!-- <div>
-                <button
-                  type="submit"
-                  class="btn btn-border-d btn-circle"
-                  value="createImage"
-                  v-on:click="createImage()"
-                >
-                  Add Image
-                </button>
-              </div> -->
             </form>
           </div>
         </div>
