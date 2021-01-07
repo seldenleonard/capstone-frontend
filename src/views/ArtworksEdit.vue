@@ -6,8 +6,7 @@
       <section
         class="module module-header bg-dark bg-dark-50"
         data-background="assets/images/section-7.jpg"
-        style="background-image: url(/assets/images/dark-sand.jpg
-);"
+        style="background-image: url(/assets/images/dark-sand.jpg);"
       >
         <div class="container">
           <!-- MODULE TITLE -->
@@ -251,7 +250,6 @@ export default {
       length: "",
       width: "",
       height: "",
-      // url: "",
       artwork: {},
       errors: [],
       image: "",
@@ -264,11 +262,6 @@ export default {
     });
   },
   methods: {
-    // setFile: function(event) {
-    //   if (event.target.files.length > 0) {
-    //     this.image = event.target.files[0];
-    //   }
-    // },
     setFile: function(event) {
       if (event.target.files.length > 0) {
         if (this.image2) {
@@ -319,8 +312,6 @@ export default {
         .patch(`/api/artworks/${this.artwork.id}`, formData)
         .then((response) => {
           this.$router.push(`/artworks/${this.artwork.id}`);
-          console.log(this.newDimensions);
-          // Get rid of this console.log when I resolve the dimensions issue
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
