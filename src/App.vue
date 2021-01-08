@@ -134,11 +134,8 @@
 import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
-  // name: "App", // MAYBE I SHOULD UNCAPITALIZE THE "A" SO IT MATCHES MY DIV ID
-  // components: {},
   data: function() {
     return {
-      // url: "",
       headerImagePath: "",
     };
   },
