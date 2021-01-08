@@ -32,6 +32,7 @@
       </div>
     </section>
     <!-- /HEADER -->
+
     <!-- PORTFOLIO DESCRIPTION -->
     <section class="module-small p-b-30">
       <div class="container">
@@ -103,10 +104,11 @@
         </strong>
       </div>
     </section>
-    <!-- PORTFOLIO FILTER LAST ATTEMPT HOPEFULLY A GOOD VERSION -->
+    <!-- /PORTFOLIO DESCRIPTION -->
+
+    <!-- PORTFOLIO FILTER -->
     <section class="module-small p-b-0 p-t-0">
       <div class="container">
-        <!-- PORTFOLIO FILTER -->
         <div class="row">
           <div class="col-sm-12">
             <h3 class="font-alt font-uppercase text-center">
@@ -152,81 +154,9 @@
             </strong>
           </div>
         </div>
-        <!-- /PORTFOLIO FILTER -->
       </div>
     </section>
-    <!-- PORTFOLIO FILTER LAST ATTEMPT HOPEFULLY A GOOD VERSION -->
-
-    <!-- PORTFOLIO FILTER (THAT I MADE AND NEVER WORKED) -->
-    <!-- <section class="module-small">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="font-inc">
-              <input
-                type="text"
-                v-model="allAttributeFilter"
-                placeholder="Search"
-              />
-              <datalist id="names">
-                <option v-for="college in colleges">{{ college.name }}</option>
-              </datalist>
-              <button v-on:click="setSortAttribute('name')">
-                <strong> Sort by Name </strong>
-              </button>
-              <button v-on:click="setSortAttribute('state')">
-                <strong> Sort by State </strong>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <!-- /PORTFOLIO FILTER (THAT I MADE AND NEVER WORKED) -->
-
-    <!-- /PORTFOLIO DESCRIPTION -->
-
-    <!-- STUFF I PASTED IN -->
-    <!-- <section class="module-small p-t-20">
-      <div class="container"> -->
-    <!-- PORTFOLIO FILTER -->
-    <!-- <div class="row">
-          <div class="col-sm-12">
-            <input
-              class="form-control input-lg"
-              type="text"
-              v-model="allAttributeFilter"
-              placeholder="Search"
-            />
-            <ul
-              v-for="college in colleges"
-              id="names"
-              class="filter font-inc hidden-xs"
-              v-on:click="setSortAttribute('name')"
-            >
-              <li>
-                <button v-on:click="setSortAttribute('name')">
-                  <strong> Sort by Name </strong>
-                </button>
-                <button v-on:click="setSortAttribute('name')">
-                  <strong> Sort by Name </strong>
-                </button>
-              </li>
-              <li>
-                <router-link
-                  :to="`/colleges/${college.id}`"
-                  class="current wow fadeInUp animated"
-                  style="visibility: visible; animation-name: fadeInUp;"
-                  >{{ college.abbreviation }}</router-link
-                >
-              </li>
-            </ul>
-          </div>
-        </div> -->
     <!-- /PORTFOLIO FILTER -->
-    <!-- </div>
-    </section> -->
-    <!-- STUFF I PASTED IN -->
 
     <!-- PORTFOLIO CONTENT -->
     <section class="module p-t-0 p-b-70">
@@ -246,7 +176,7 @@
               'abbreviation',
               'city',
               'state',
-              'dimensions' // DONT KNOW WHY 'dimensions' ARE IN HERE BUT AFRIAD TO TAKE IT OUT AT THIS POINT
+              'dimensions'
             ),
             sortAttribute
           )"
@@ -261,10 +191,11 @@
             </div>
             <div class="work-caption">
               <h3 class="work-title font-alt">
+                <span class="icon-magnifying-glass"></span>
+                <br /><br />
                 <strong>{{ college.name }}</strong
                 ><br />
                 {{ college.city }}, {{ college.state }}
-                <!-- <span class="icon-magnifying-glass"></span> -->
               </h3>
             </div>
           </router-link>
@@ -274,53 +205,12 @@
     </section>
     <!-- /PORTFOLIO CONTENT -->
 
-    <!-- MY OLD CODE -->
-    <!-- <div>
-      <input type="text" v-model="allAttributeFilter" placeholder="Search" />
-      <datalist id="names">
-        <option v-for="college in colleges">{{ college.name }}</option>
-      </datalist>
-      <button v-on:click="setSortAttribute('name')">
-        Sort by Name
-      </button>
-      <button v-on:click="setSortAttribute('state')">
-        Sort by State
-      </button>
-    </div> -->
-
-    <!-- <div
-      v-for="college in orderBy(
-        filterBy(
-          colleges,
-          allAttributeFilter,
-          'name',
-          'abbreviation',
-          'city',
-          'state',
-          'dimensions'
-        ),
-        sortAttribute
-      )"
-    > -->
-    <!-- <img :src="college.image_url" alt="" />
-      <h2>{{ college.name }}</h2>
-      <p>{{ college.abbreviation }}</p>
-      <p>{{ college.city }}, {{ college.state }}</p>
-      <p>{{ college.bio }}</p> -->
-    <!-- <h5 class="category">
-      {{ college.users.length }} Student Artists Represented
-    </h5> -->
-    <!-- <router-link :to="`/colleges/${college.id}`">
-        <button>Explore Student Artists</button>
-      </router-link> -->
-    <!-- </div> -->
     <strong
       ><div class="divider py-1 bg-dark"><hr /></div>
     </strong>
   </div>
 </template>
-//
----------------------------------------------------------------------------------
+
 <script>
 import axios from "axios";
 import Vue2Filters from "vue2-filters";
