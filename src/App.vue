@@ -55,13 +55,6 @@
     </nav>
     <!-- /NAVIGATION -->
 
-    <!-- PRE-THEME Installation Router-Links and Such -->
-    <!-- <div id="nav">
-      <div> 
-        <button @click="openUploadModal">Upload files</button>
-      </div> -->
-    <!-- </div> -->
-
     <!-- WRAPPER -->
     <div class="wrapper">
       <router-view :key="$route.path" />
