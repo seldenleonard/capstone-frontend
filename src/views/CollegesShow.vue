@@ -23,9 +23,7 @@
 
               <br /><br />
               <div>
-                <h2 class="work-title font-alt">
-                  <!-- <span class="icon-globe"></span> -->
-                </h2>
+                <h2 class="work-title font-alt"></h2>
               </div>
             </div>
           </div>
@@ -42,7 +40,6 @@
           <div class="col-lg-12">
             <div class="work-details">
               <h3 class="work-details-title font-alt">
-                <!-- <strong>{{ college.name }}</strong> -->
                 <i class="fa fa-institution"></i
                 ><strong> {{ college.abbreviation }}</strong>
               </h3>
@@ -87,40 +84,6 @@
         </strong>
       </div>
     </section>
-    <!-- PORTFOLIO DESCRIPTION -->
-    <!-- <section class="module-small">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div
-              class="work-details align-center"
-              v-for="user in college.users"
-            >
-              <img :src="user.image_url" alt="" />
-              <h3 class="work-details-title font-alt">{{ user.name }}</h3>
-              <ul v-if="user.artist">
-                <li class="font-inc">
-                  Class of <strong>{{ user.graduation_year }}</strong>
-                </li>
-                <li class="font-inc">
-                  Major: <strong>{{ user.major }}</strong>
-                </li>
-                <li v-if="user.artist && user.minor" class="font-inc">
-                  Minor: <strong>{{ user.minor }}</strong>
-                </li>
-                <li v-if="user.artist && user.art_style" class="font-inc">
-                  Style of Art: <strong>{{ user.art_style }}</strong>
-                </li>
-                <li v-if="user.artist && user.bio" class="font-inc">
-                  Bio: <strong>{{ user.bio }}</strong>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <!-- /PORTFOLIO DESCRIPTION -->
 
     <!-- BLOG GRID -->
     <section class="module p-b-0 p-t-10">
