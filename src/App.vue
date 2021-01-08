@@ -143,22 +143,6 @@ export default {
     };
   },
   methods: {
-    // openUploadModal() {
-    //   window.cloudinary
-    //     .openUploadWidget(
-    //       {
-    //         cloud_name: "xxxcloudxxx",
-    //         upload_preset: "lryaylj0",
-    //       },
-    //       (error, result) => {
-    //         if (!error && result && result.event === "success") {
-    //           console.log("Done uploading..: ", result.info);
-    //           this.url = result.info.url;
-    //         }
-    //       }
-    //     )
-    //     .open();
-    // },
     isLoggedIn: function() {
       return localStorage.getItem("jwt");
     },
