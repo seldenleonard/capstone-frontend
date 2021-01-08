@@ -118,7 +118,6 @@
             <div class="col-sm-12 text-center">
               <p class="copyright font-inc m-b-0">
                 © 2020 <router-link to="/colleges">Art U</router-link>
-                <!-- © 2015 <a href="index.html">SEMANTIC</a>, All Rights Reserved. -->
               </p>
             </div>
           </div>
