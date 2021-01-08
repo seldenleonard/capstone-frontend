@@ -187,76 +187,6 @@
       <!-- /DIVIDER -->
     </div>
     <!-- /WRAPPER -->
-
-    <!-- MY OLD CODE -->
-    <!-- <form v-on:submit.prevent="updateUser()">
-      <h1>Update User</h1>
-      <ul>
-        <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
-      <div class="form-group">
-        <label>Name:</label>
-        <input type="text" class="form-control" v-model="user.name" />
-      </div>
-      <div class="form-group">
-        <label>Email:</label>
-        <input type="text" class="form-control" v-model="user.email" />
-      </div>
-      <div class="form-group">
-        <label>Password:</label>
-        <input type="text" class="form-control" v-model="user.password" />
-      </div>
-      <div class="form-group">
-        <label>Password Confirmation:</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="user.password_confirmation"
-        />
-      </div>
-      <div v-if="user.artist">
-        <div class="form-group">
-          <label>Style of Art:</label>
-          <input type="text" class="form-control" v-model="user.art_style" />
-        </div>
-        <div class="form-group">
-          <label>College:</label>
-          <input type="text" class="form-control" v-model="user.college_id" />
-        </div>
-        <div class="form-group">
-          <label>Major:</label>
-          <input type="text" class="form-control" v-model="user.major" />
-        </div>
-        <div class="form-group">
-          <label>Minor:</label>
-          <input type="text" class="form-control" v-model="user.minor" />
-        </div>
-        <div class="form-group">
-          <label>Graduation Year:</label>
-          <input
-            type="number"
-            class="form-control"
-            v-model="user.graduation_year"
-          />
-        </div>
-        <div class="form-group">
-          <label>Bio:</label>
-          <input type="text" class="form-control" v-model="user.bio" />
-        </div>
-        <div class="form-group">
-          <label>Profile Image:</label>
-          <input
-            type="file"
-            class="form-control"
-            v-on:change="setFile($event)"
-            ref="fileInput"
-          />
-        </div>
-      </div>
-
-      <input type="submit" class="btn btn-primary" value="Submit" />
-    </form>
-    <button class="" v-on:click="destroyUser()">Delete</button> -->
   </div>
 </template>
 
@@ -294,20 +224,6 @@ export default {
       }
     },
     updateUser: function() {
-      // let params = {
-      //   name: this.user.name,
-      //   email: this.user.email,
-      //   password: this.user.password,
-      //   password_confirmation: this.user.password_confirmation,
-      //   // artist: this.user.artist,
-      //   bio: this.user.bio,
-      //   art_style: this.user.art_style,
-      //   image_url: this.user.image_url,
-      //   college_id: this.user.college_id,
-      //   major: this.user.major,
-      //   minor: this.user.minor,
-      //   graduation_year: this.user.graduation_year,
-      // };
       let formData = new FormData();
       formData.append("name", this.user.name);
       formData.append("email", this.user.email);
