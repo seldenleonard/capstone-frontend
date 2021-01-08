@@ -5,7 +5,6 @@
       class="navbar navbar-custom navbar-transparent navbar-fixed-top"
       role="navigation"
     >
-      <!-- Note: the navbar was originally "transparent" instead of black but i changed it cause I couldnt see it, but change it back when I put more of the theme in -->
       <div class="container">
         <div class="navbar-header">
           <button
@@ -20,8 +19,6 @@
             <span class="icon-bar"></span>
           </button>
           <router-link class="navbar-brand" to="/">Art U</router-link>
-
-          <!-- <router-link to="/colleges" class="navbar-brand">Art U</router-link> -->
         </div>
         <div class="collapse navbar-collapse" id="custom-collapse">
           <!-- Router Links in Nav Bar -->
@@ -50,6 +47,7 @@
               <router-link to="/logout">Logout</router-link>
             </li>
           </ul>
+          <!-- /Router Links in Nav Bar -->
         </div>
       </div>
     </nav>
