@@ -180,7 +180,6 @@ export default {
   data: function() {
     return {
       userId: "",
-      // IS THERE ANY REASON THAT I WOULD NEED "userId" IN MY ArtworksNew.vue, WHEN I DONT EVEN CALL IT?
       title: "",
       medium: "",
       description: "",
