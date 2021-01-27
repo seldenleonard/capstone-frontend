@@ -53,11 +53,11 @@
                 <!-- Note: This should probably be "as is our community", unless im saying the Art U team is as passionate about art as we are about our community -->
               </p>
               <p>
-                The evolution of art is constant revolution. Art will grow,
-                adapt, and exist despite anything, and as a powerful agent of
-                change. The rapid, infinite, and decentralized evolution of art
-                is ongoing indefinately. Art U simply seeks to facilitate a way
-                for those participating to come together and witness this
+                The evolution of art is a state of constant revolution. Art will
+                grow, adapt, and exist despite anything, and as a powerful agent
+                of change. The rapid, infinite, and decentralized evolution of
+                art is ongoing indefinately. Art U simply seeks to facilitate a
+                way for those participating to come together and witness this
                 process.
               </p>
             </div>
