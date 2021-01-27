@@ -48,8 +48,8 @@
                 We are a mission-driven organization seeking to uplift the next
                 generation of artists whose contributions will undoubtedly
                 inspire and create change in our world. The Art U Team is as
-                passionate about creating, discovering, sharing, and collecting
-                art as our community, and we welcome new members wholeheartedly.
+                passionate about creating, discovering, collecting, and sharing
+                art as our community, and we are eager to welcome new members.
                 <!-- Note: This should probably be "as is our community", unless im saying the Art U team is as passionate about art as we are about our community -->
               </p>
               <p>
