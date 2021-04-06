@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router';
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "art-u.herokuapp.com";
+axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://art-u.herokuapp.com";
 Vue.config.productionTip = false;
 
 var jwt = localStorage.getItem("jwt");
